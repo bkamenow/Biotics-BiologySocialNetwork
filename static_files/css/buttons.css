@@ -1,0 +1,64 @@
+.submit,
+#edit-btn-acc,
+#delete-btn-acc {
+    background-color: dodgerblue;
+    color: white;
+    border: none;
+    padding: 10px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 50%;
+    margin-left: 100px;
+}
+
+.submit:hover,
+#edit-btn-acc:hover,
+#delete-btn-acc:hover {
+    background: #03417c;
+}
+
+
+.close-button {
+    position: relative;
+    bottom: 62px;
+    left: 431px;
+    width: 30px;
+    height: 30px;
+    border: 1px solid gray;
+    border-radius: 100%;
+    padding: 0 5px;
+
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    cursor: pointer;
+    color: gray;
+}
+
+.delete-btn {
+  display: block;
+  margin: 20px auto;
+  padding: 10px 20px;
+  background-color: dodgerblue;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+
+.delete-btn:hover {
+  background-color: darkblue;
+}
+
+#edit-btn-acc {
+    padding: 10px 20px;
+    margin-left: 130px;
+}
+
+#delete-btn-acc {
+    margin-left: 25px;
+}
+
+

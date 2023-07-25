@@ -1,0 +1,158 @@
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-image: url('/staticfiles/images/background.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+
+}
+
+header {
+    background-color: #ffffff;
+    display: flex;
+    align-items: center;
+    padding: 3px 20px;
+}
+
+.logo {
+    height: 50px;
+    margin-right: 0;
+}
+
+.search-container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-grow: 1;
+    margin: 0;
+}
+
+.search-input {
+    padding: 8px;
+    border: 2px solid #ccc;
+    border-right-color: white;
+    border-radius: 6px 0 0 6px;
+    width: 300px;
+    outline: none;
+}
+
+.search-button {
+    background-color: dodgerblue;
+    color: white;
+    padding: 8px 15px;
+    border: 2px solid #ccc;
+    border-left-color: white;
+    border-radius: 0 6px 6px 0;
+    cursor: pointer;
+    outline: none;
+}
+
+.search-button:hover {
+    background-color: #03417c;
+}
+
+.navigation {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+    margin-right: 200px;
+}
+
+.navigation li a {
+    margin: 0 20px;
+    text-decoration: none;
+    color: black;
+    cursor: pointer;
+    font-size: 20px;
+
+}
+.navigation li {
+    padding: 10px;
+    border-radius: 20px;
+    flood-opacity: 20%;
+}
+.navigation li:hover {
+    background-color: lightsteelblue;
+    cursor: pointer;
+}
+
+a {
+    text-decoration: none;
+}
+
+.second-navigation {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #002049;
+    padding-top: 15px;
+}
+
+
+.second-navigation ul {
+    display: inline;
+    padding: 0;
+    margin: 0 155px 0 0;
+}
+
+.second-navigation-nav ul li {
+    display: inline;
+    list-style: none;
+    margin-right: 20px;
+}
+
+.second-navigation-nav ul li a {
+    color: white;
+}
+main {
+    padding-bottom: 45px;
+}
+
+.main-section {
+    text-align: center;
+}
+
+.main-section p{
+    color: white;
+}
+
+.welcome {
+    font-size: 60px;
+    margin: 91px 0 40px 0;
+}
+
+.information {
+    margin: 10px 310px;
+    font-size: 30px;
+}
+
+.register-button {
+    margin-top: 30px;
+    margin-bottom: 30px;
+    padding: 20px 40px;
+    font-size: large;
+    background-color: #3fe87d;
+    border: none;
+    border-radius: 5px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.register-button:hover {
+    background-color: #03fc4e;
+}
+
+.footer {
+    background-color: lightsteelblue;
+    padding: 10px;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    margin: 0;
+}

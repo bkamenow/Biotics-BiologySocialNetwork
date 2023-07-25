@@ -1,0 +1,51 @@
+.choises-section {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgba(0, 0, 0, 0.1); /* Gray faded background */
+    padding: 50px 200px;
+    margin: 10px 0;
+}
+
+.choice {
+    width: 25%;
+    margin-bottom: 20px;
+    padding: 30px 15px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    position: relative;
+    overflow: hidden;
+    text-align: center;
+    cursor: pointer;
+}
+
+.choice:hover {
+    transform: scale(1.1);
+}
+
+.choice .background-image {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 120%;
+    opacity: 0.8; /* Adjust the opacity as needed */
+    z-index: -1;
+}
+
+.choice h2 {
+    margin-top: 0;
+    color: white;
+}
+
+.choice .description {
+    margin-bottom: 10px;
+    color: white;
+
+}
+
+.choice .description, .choice h2, .choice .background-image {
+    transition: transform 0.3s;
+}
+
+.choice:hover .description, .choice:hover h2, .choice:hover .background-image {
+    transform: scale(1.1);
+}

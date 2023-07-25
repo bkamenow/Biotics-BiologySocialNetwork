@@ -1,0 +1,45 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="">
+<head>
+    <title>My Website</title>
+    <link rel="stylesheet" href="{% static '/css/styles.css' %}">
+</head>
+<body>
+    <header>
+        <a href="{% url 'home_page' %}">
+            <img class="logo" src="{% static '/images/logo.png' %}" alt="Logo">
+        </a>
+
+        <div class="search-container">
+
+            <input class="search-input" type="text" placeholder="Search...">
+            <button class="search-button">Search</button>
+
+        </div>
+
+        <ul class="navigation">
+            <li><a href="{% url 'login_page' %}">Login</a></li>
+            <li><a href="{% url 'create_profile' %}">Sign Up</a></li>
+        </ul>
+    </header>
+    <div class="second-navigation">
+        <nav class="second-navigation-nav">
+            <ul>
+                <li><a href="{% url 'home_page' %}">Home</a></li>
+                <li><a href="{% url 'publications' %}">Publications</a></li>
+                <li><a href="{% url 'events' %}">Events</a></li>
+                <li><a href="{% url 'trainings' %}">Trainings</a></li>
+            </ul>
+            <hr>
+        </nav>
+    </div>
+
+    {% block content %}
+    {% endblock %}
+
+    <footer>
+        <p class="footer">&copy; 2023 Biotics. All rights reserved.</p>
+    </footer>
+</body>
+</html>

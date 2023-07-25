@@ -1,0 +1,107 @@
+.registration-container {
+    width: 522px;
+    padding: 30px 60px 30px 50px;
+    margin: 100px auto auto;
+    background-image: url("/staticfiles/images/singup-background.jpg");
+    transform:
+    /*perspective(750px)*/
+    /*translate3d(0px, 0px, -250px)*/
+    /*rotateX(27deg)*/
+    scale(0.9, 0.9);
+    border-radius: 20px;
+    border: 5px solid #e6e6e6;
+    box-shadow: 0 70px 40px -20px rgba(0, 0, 0, 0.2);
+    transition: 0.4s ease-in-out transform;
+}
+/*.registration-container:hover {*/
+/*    transform: translate3d(0px, 0px, -250px);*/
+/*  }*/
+
+.register-input,
+.submit {
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: whitesmoke;
+}
+
+.terms {
+  display: flex;
+  align-items: center;
+    flex-direction: column-reverse;
+    color: white;
+}
+
+.terms a {
+  color: cornflowerblue;
+  text-decoration: none;
+}
+
+.header {
+    text-align: center;
+    margin: 0;
+    color: white;
+}
+
+
+.delete-message {
+    font-size: 3rem;
+    color: white;
+    text-align: center;
+    margin: 10px 0 0 10px;
+}
+
+
+#edit {
+    width: 1176px;
+    padding: 30px 70px 30px 50px;
+    margin: 260px auto auto;
+    background-image: url(/staticfiles/images/singup-background.jpg);
+
+    border-radius: 20px;
+    border: 5px solid #e6e6e6;
+    box-shadow: 0 70px 40px -20px rgba(0, 0, 0, 0.2);
+    transition: 0.4s ease-in-out transform;
+}
+
+#details-img {
+    width: 25%;
+}
+
+.profile-details-header {
+    color: whitesmoke;
+    text-align: center;
+    margin-left: 20px;
+}
+
+#details-img {
+    margin-left: 160px;
+}
+
+#details-title {
+    color: whitesmoke;
+    text-align: center;
+    font-size: 18px;
+    margin-left: 20px;
+}
+
+
+.bg-details {
+    background-color: #03417c;
+    border-radius: 15px;
+    margin-left: 60px;
+    width: 75%;
+
+}
+
+#details-description {
+    flex-wrap: wrap;
+    color: whitesmoke;
+    text-align: center;
+    padding: 5px 0;
+    opacity: 100%;
+    margin-bottom: 20px;
+}

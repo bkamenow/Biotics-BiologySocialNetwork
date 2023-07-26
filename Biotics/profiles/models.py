@@ -46,6 +46,12 @@ class BioticsUserModel(AbstractUser, PermissionsMixin):
     gender = models.CharField(choices=GENDER_CHOICES, max_length=10, blank=True)
     biology_type = models.CharField(choices=BIOLOGY_CHOICES, max_length=10, blank=True)
     rank = models.CharField(choices=RANK_CHOICES, max_length=20, blank=True)
+    age = models.PositiveIntegerField(blank=True)
 
-    def __str__(self):
-        return self.email
+    def get_user_name(self):
+        if self.first_name and self.last_name:
+            return self.first_name + ' ' + self.last_name
+        elif self.first_name or self.last_name:
+            return self.first_name or self.last_name
+        else:
+            return self.username

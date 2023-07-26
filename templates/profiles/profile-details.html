@@ -4,26 +4,38 @@
      <div class="container">
         <div class="profile-container">
             <h2 class="profile-details-header">Profile Details</h2>
-            {% if profile.image %}
-                <img id="details-img" src=""
+            {% if object.profile_picture %}
+                <img id="details-img" src="{{ object.profile_picture.url }}"
                      alt="profile img"/>
             {% else %}
-
                 <img id="details-img" src="{% static '/images/user.png' %}" alt="profile img"/>
             {% endif %}
 
             <div id="info-wrapper">
-                <p id="details-title">Borislav Kamenov</p>
+                <p id="details-title">{{ object.get_user_name }}</p>
                 <div class="bg-details">
                     <div id="details-description">
-                        <p>Age: 22</p>
-                        <p id="details-email">Email: b.kamenow@mail.bg</p>
+                        {% if object.age %}
+                            <p>Age: {{ object.age }}</p>
+                        {% endif %}
+                        {% if object.gender %}
+                            <p>Gender: {{ object.gender }}</p>
+                        {% endif %}
+                        {% if object.biology_type %}
+                            <p>Biology type: {{ object.biology_type }}</p>
+                        {% endif %}
+                        {% if object.rank %}
+                            <p>Rank: {{ object.rank }}</p>
+                        {% endif %}
+                        <p id="details-email">Email: {{ object.email}}</p>
                         <p id="nutrition">Followers: 1234</p>
                     </div>
                 </div>
                 <div id="action-buttons">
-                    <a href="{% url 'edit_profile' %}" id="edit-btn-acc">Edit</a>
-                    <a href="{% url 'delete_profile' %}" id="delete-btn-acc">Delete</a>
+                    {% if request.user == bioticsusermodel %}
+                        <a href="{% url 'edit_profile' pk=object.pk %}" id="edit-btn-acc">Edit</a>
+                        <a href="{% url 'delete_profile' pk=object.pk %}" id="delete-btn-acc">Delete</a>
+                    {% endif %}
                 </div>
             </div>
         </div>

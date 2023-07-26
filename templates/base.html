@@ -12,15 +12,20 @@
         </a>
 
         <div class="search-container">
-
             <input class="search-input" type="text" placeholder="Search...">
             <button class="search-button">Search</button>
-
         </div>
 
         <ul class="navigation">
-            <li><a href="{% url 'login_page' %}">Login</a></li>
-            <li><a href="{% url 'create_profile' %}">Sign Up</a></li>
+            {% if not request.user.is_authenticated  %}
+                <li><a href="{% url 'login_page' %}">Login</a></li>
+                <li><a href="{% url 'create_profile' %}">Sign Up</a></li>
+            {% else %}
+                <li><a href="#">Create Post</a></li>
+                <li><a href="#">Create Event</a></li>
+                <li><a href="{% url 'profile_details' request.user.pk %}">Profile Details</a></li>
+                <li><a href="{% url 'logout_user' %}">Logout</a></li>
+            {% endif %}
         </ul>
     </header>
     <div class="second-navigation">

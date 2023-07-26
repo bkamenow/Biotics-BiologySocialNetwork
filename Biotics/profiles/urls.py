@@ -1,11 +1,13 @@
 from django.urls import path
 
 from Biotics.profiles import views
-from Biotics.profiles.views import edit_profile, delete_profile, profile_details
+
 
 urlpatterns = [
     path('create/', views.BioticsUserRegisterView.as_view(), name='create_profile'),
-    path('edit/', edit_profile, name='edit_profile'),
-    path('details/', profile_details, name='profile_details'),
-    path('delete/', delete_profile, name='delete_profile'),
+    path('login/', views.BioticsUserLoginView.as_view(), name='login_page'),
+    path('logout/', views.BioticsUserLogoutView.as_view(), name='logout_user'),
+    path('edit/<int:pk>/', views.BioticsUserEditView.as_view(), name='edit_profile'),
+    path('details/<int:pk>/', views.BioticsUserDetailsView.as_view(), name='profile_details'),
+    path('delete/<int:pk>/', views.BioticsUserDeleteView.as_view(), name='delete_profile'),
 ]

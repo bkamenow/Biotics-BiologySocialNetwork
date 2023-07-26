@@ -36,15 +36,23 @@
 }
 
 .delete-btn {
-  display: block;
-  margin: 20px auto;
-  padding: 10px 20px;
-  background-color: dodgerblue;
-  color: white;
-  border: none;
-  border-radius: 4px;
-  font-size: 1.2rem;
-  cursor: pointer;
+    display: inline-block;
+    margin: 20px auto 20px 30px;
+    padding: 10px 20px;
+    background-color: dodgerblue;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    font-size: 1.2rem;
+    cursor: pointer;
+}
+
+.dlt-btn {
+    margin-left: 400px;
+}
+
+.delete-btn .edit-btn{
+    color: white;
 }
 
 

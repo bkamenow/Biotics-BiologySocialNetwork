@@ -5,12 +5,23 @@
         <div class="profile-container">
             <h2 class="header">Edit Profile</h2>
             <span class="close-button">×</span>
-            <form>
-                <input class="register-input" type="text" placeholder="First name" required>
-                <input class="register-input" type="text" placeholder="Last name" required>
-                <input class="register-input" type="text" placeholder="Username" required>
-                <input class="register-input" type="email" placeholder="Email" required>
+            <form method="post">
+                {% for field in form %}
+                <p class="error">{{ field.errors }}</p>
+                {% if field.name == "profile_picture" %}
+                    <div class="label-input">
+                        <label>{{ field.label }}</label>
+                        <input type="file" name="{{ field.name }}">
+                    </div>
+                {% else %}
+                    <div class="label-input">
+                        <label>{{ field.label }}</label>
+                        {{ field }}
+                    </div>
+                {% endif %}
+                {% endfor %}
                 <button class="submit">Edit</button>
+                {% csrf_token %}
             </form>
         </div>
     </div>

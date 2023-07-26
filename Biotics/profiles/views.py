@@ -1,12 +1,12 @@
-from django.shortcuts import render
+from django.contrib.auth.mixins import LoginRequiredMixin
+
 from django.urls import reverse_lazy
 from django.views import generic as views
+from django.contrib.auth import views as auth_views
+from django.views.generic import DeleteView
 
-from Biotics.profiles.forms import BioticsUserCreateForm
+from Biotics.profiles.forms import BioticsUserCreateForm, LoginForm, BioticsUserEditForm
 from Biotics.profiles.models import BioticsUserModel
-
-
-# Create your views here.
 
 
 class BioticsUserRegisterView(views.CreateView):
@@ -16,13 +16,34 @@ class BioticsUserRegisterView(views.CreateView):
     success_url = reverse_lazy('login_page')
 
 
-def edit_profile(request):
-    return render(request, template_name='profiles/profile-edit.html')
+class BioticsUserLoginView(auth_views.LoginView):
+    form_class = LoginForm
+    template_name = 'profiles/login.html'
+    next_page = reverse_lazy('home_page')
 
 
-def delete_profile(request):
-    return render(request, template_name='profiles/profile-delete.html')
+class BioticsUserLogoutView(auth_views.LogoutView):
+    next_page = reverse_lazy('login_page')
 
 
-def profile_details(request):
-    return render(request, template_name='profiles/profile-details.html')
+class BioticsUserDetailsView(views.DetailView):
+    model = BioticsUserModel
+    template_name = 'profiles/profile-details.html'
+
+
+class BioticsUserEditView(views.UpdateView):
+    model = BioticsUserModel
+    form_class = BioticsUserEditForm
+    template_name = 'profiles/profile-edit.html'
+
+    def get_success_url(self):
+        return reverse_lazy('profile_details', kwargs={'pk': self.object.pk})
+
+
+class BioticsUserDeleteView(LoginRequiredMixin, DeleteView):
+    model = BioticsUserModel
+    template_name = 'profiles/profile-delete.html'
+    success_url = reverse_lazy('home_page')
+
+    def get_object(self, queryset=None):
+        return self.request.user

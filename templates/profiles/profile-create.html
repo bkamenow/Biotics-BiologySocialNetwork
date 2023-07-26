@@ -6,12 +6,6 @@
             <h2 class="header">Create Profile</h2>
             <span class="close-button">×</span>
             <form method="post">
-{#                <input class="register-input" type="text" placeholder="First name" required>#}
-{#                <input class="register-input" type="text" placeholder="Last name" required>#}
-{#                <input class="register-input" type="text" placeholder="Username" required>#}
-{#                <input class="register-input" type="email" placeholder="Email" required>#}
-{#                <input class="register-input" type="password" placeholder="Password" required>#}
-{#                <input class="register-input" type="password" placeholder="Repeat Password" required>#}
                 {% csrf_token %}
                 {{ form.username.errors }}
                 {{ form.username|placeholder:'Username' }}
@@ -27,6 +21,9 @@
                 </div>
                 <button class="submit">Register</button>
             </form>
+             <div class="second-option">
+                <p>Have an account? <a href="{% url 'login_page' %}">Log In</a></p>
+            </div>
         </div>
     </div>
 {% endblock %}

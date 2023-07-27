@@ -1,4 +1,4 @@
-.profile-container {
+.create-container {
     width: 522px;
     padding: 30px 60px 30px 50px;
     margin: 100px auto auto;
@@ -69,7 +69,10 @@ select{
 }
 
 #details-img {
-    width: 25%;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .profile-details-header {
@@ -101,10 +104,11 @@ select{
 #details-description {
     flex-wrap: wrap;
     color: whitesmoke;
-    text-align: center;
     padding: 5px 0;
     opacity: 100%;
     margin-bottom: 20px;
+    margin-left: 20px;
+
 }
 
 .second-option {

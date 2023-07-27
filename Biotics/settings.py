@@ -39,7 +39,7 @@ INSTALLED_APPS = [
     'Biotics.common',
     'Biotics.profiles',
     'Biotics.biology',
-
+    'Biotics.publications',
 ]
 
 MIDDLEWARE = [
@@ -132,3 +132,6 @@ STATIC_ROOT = BASE_DIR / 'static_files'
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'

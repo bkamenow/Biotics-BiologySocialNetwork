@@ -2,10 +2,10 @@
 {% block content %}
     <main>
         <div class="container">
-        <div class="profile-container">
+        <div class="create-container">
             <h2 class="header">Edit Profile</h2>
-            <span class="close-button">×</span>
-            <form method="post">
+            <span class="close-button" role="button"><a href="javascript:history.back()">×</a></span>
+            <form method="post" enctype="multipart/form-data">
                 {% for field in form %}
                 <p class="error">{{ field.errors }}</p>
                 {% if field.name == "profile_picture" %}

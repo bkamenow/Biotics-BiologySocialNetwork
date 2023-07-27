@@ -17,7 +17,6 @@
     background: #03417c;
 }
 
-
 .close-button {
     position: relative;
     bottom: 62px;
@@ -32,6 +31,9 @@
     font-weight: bold;
     text-align: center;
     cursor: pointer;
+    color: gray;
+}
+.close-button a {
     color: gray;
 }
 
@@ -84,4 +86,14 @@
 
 .register-button:hover {
     background-color: #03fc4e;
+}
+
+
+.publication-buttons{
+    margin-left: 10px;
+    margin-top: 10px;
+}
+
+.publication-buttons button {
+
 }

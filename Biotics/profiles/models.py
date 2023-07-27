@@ -16,16 +16,16 @@ class BioticsUserModel(AbstractUser, PermissionsMixin):
     ]
 
     BIOLOGY_CHOICES = [
-        ('Bot', 'Botany'),
-        ('Micro', 'Microbiology'),
-        ('Zoo', 'Zoology'),
+        ('Botany', 'Botany'),
+        ('Microbiology', 'Microbiology'),
+        ('Zoology', 'Zoology'),
     ]
 
     RANK_CHOICES = [
-        ('St', 'Student'),
-        ('As', 'Assistant'),
-        ('AP', 'Associate Professor'),
-        ('Pr', 'Professor'),
+        ('Student', 'Student'),
+        ('Assistant', 'Assistant'),
+        ('Associate Professor', 'Associate Professor'),
+        ('Professor', 'Professor'),
     ]
 
     email = models.EmailField(unique=True)
@@ -42,11 +42,11 @@ class BioticsUserModel(AbstractUser, PermissionsMixin):
                                      MinLengthValidator(2),
                                      check_string_contains_only_letters
                                  ])
-    profile_picture = models.ImageField(blank=True)
-    gender = models.CharField(choices=GENDER_CHOICES, max_length=10, blank=True)
-    biology_type = models.CharField(choices=BIOLOGY_CHOICES, max_length=10, blank=True)
+    profile_picture = models.ImageField(blank=True, upload_to='profile_pics/')
+    gender = models.CharField(choices=GENDER_CHOICES, max_length=13, blank=True)
+    biology_type = models.CharField(choices=BIOLOGY_CHOICES, max_length=13, blank=True)
     rank = models.CharField(choices=RANK_CHOICES, max_length=20, blank=True)
-    age = models.PositiveIntegerField(blank=True)
+    age = models.PositiveIntegerField(blank=True, null=True)
 
     def get_user_name(self):
         if self.first_name and self.last_name:

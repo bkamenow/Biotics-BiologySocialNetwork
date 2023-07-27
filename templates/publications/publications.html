@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <nav class="publication-nav">
+        <ul class="pub-ul">
+            <li class="pub-li"><a href="#">General Publications</a></li>
+            <li class="pub-li"><a href="#">Zoology Publications</a></li>
+            <li class="pub-li"><a href="#">Botany Publications</a></li>
+            <li class="pub-li"><a href="#">Microbiology Publications</a></li>
+        </ul>
+    </nav>
+    {% for pub in all_publications %}
+        <div class="publications-container">
+            <div class="publication-container">
+                <div class="publication">
+                    <a href="{% url 'profile_details' pub.user.pk %}">
+                        <div class="user-profile">
+                            {% if pub.user.profile_picture %}
+                                <img src="{{ pub.user.profile_picture.url }}" alt="User Profile Picture">
+                            {% else %}
+                                <img src="{% static '/images/user.png' %}" alt="User Profile Picture">
+                            {% endif %}
+                            <div class="username">{{ pub.user.username }}</div>
+                        </div>
+                    </a>
+                    <img src="{{ pub.photo.url }}" alt="Publication Image">
+
+                    <div class="publication-details">
+                        <h2>{{ pub.title }}</h2>
+                        <p>{{ pub.description }}</p>
+                        <p>{{ pub.date_of_publication }}</p>
+                    </div>
+                    <div class="publication-buttons">
+                        <button class="like-button">
+                            <i class="fa-regular fa-thumbs-up"></i>
+                        </button>
+                        <button class="comment-button">
+                            <i class="fa-regular fa-comment"></i>
+                        </button>
+                        <button class="share-button">
+                            <i class="fa-solid fa-share"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

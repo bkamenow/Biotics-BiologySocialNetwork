@@ -30,6 +30,16 @@ class BioticsUserDetailsView(views.DetailView):
     model = BioticsUserModel
     template_name = 'profiles/profile-details.html'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        total_publications = self.object.publications.count()
+        print(f"Total Publications for User {self.object}: {total_publications}")
+        context.update({
+            'total_publications': total_publications,
+
+        })
+        return context
+
 
 class BioticsUserEditView(views.UpdateView):
     model = BioticsUserModel

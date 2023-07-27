@@ -34,3 +34,4 @@ class BioticsUserEditForm(forms.ModelForm):
             'biology_type': 'Biology type:',
             'rank': 'Rank:',
         }
+        

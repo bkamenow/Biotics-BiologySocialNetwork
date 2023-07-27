@@ -2,9 +2,9 @@
 {% load custom_filter %}
 {% block content %}
     <div class="container">
-        <div class="profile-container">
+        <div class="create-container">
             <h2 class="header">Create Profile</h2>
-            <span class="close-button">×</span>
+            <span class="close-button"><a href="javascript:history.back()">×</a></span>
             <form method="post">
                 {% csrf_token %}
                 {{ form.username.errors }}

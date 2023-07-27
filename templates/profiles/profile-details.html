@@ -2,8 +2,9 @@
 {% load static %}
 {% block content %}
      <div class="container">
-        <div class="profile-container">
+        <div class="create-container">
             <h2 class="profile-details-header">Profile Details</h2>
+             <span class="close-button" role="button"><a href="javascript:history.back()">×</a></span>
             {% if object.profile_picture %}
                 <img id="details-img" src="{{ object.profile_picture.url }}"
                      alt="profile img"/>
@@ -12,9 +13,12 @@
             {% endif %}
 
             <div id="info-wrapper">
-                <p id="details-title">{{ object.get_user_name }}</p>
+                <p id="details-title">{{ object.username }}</p>
                 <div class="bg-details">
                     <div id="details-description">
+                        {% if object.get_user_name %}
+                            <p>Name: {{ object.get_user_name }}</p>
+                        {% endif %}
                         {% if object.age %}
                             <p>Age: {{ object.age }}</p>
                         {% endif %}
@@ -40,5 +44,15 @@
             </div>
         </div>
     </div>
+    <h2 class="pub-header">Publications</h2>
+    <div class="details-profile-photo-section">
+        {% for pub in object.publications.all %}
+                <div class="publication">
+                    <a href="#">
+                        <img src="{{ pub.photo.url }}" alt="Publication Image">
+                    </a>
+                </div>
 
+        {% endfor %}
+    </div>
 {% endblock %}

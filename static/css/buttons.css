@@ -49,6 +49,9 @@
     cursor: pointer;
 }
 
+#delete{
+    display: inline;
+}
 .dlt-btn {
     margin-left: 400px;
 }
@@ -94,6 +97,6 @@
     margin-top: 10px;
 }
 
-.publication-buttons button {
-
+.publication-buttons button a{
+    color: black;
 }

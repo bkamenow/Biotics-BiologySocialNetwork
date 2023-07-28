@@ -23,7 +23,7 @@
                 <li><a href="{% url 'create_profile' %}">Sign Up</a></li>
             {% else %}
                 <li><a href="{% url 'create_publication' %}">Create Post</a></li>
-                <li><a href="#">Create Event</a></li>
+                <li><a href="{% url 'create_event' %}">Create Event</a></li>
                 <li><a href="{% url 'profile_details' request.user.pk %}">Profile Details</a></li>
                 <li><a href="{% url 'logout_user' %}">Logout</a></li>
             {% endif %}

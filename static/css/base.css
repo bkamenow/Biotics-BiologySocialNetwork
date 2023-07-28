@@ -171,6 +171,7 @@ main {
 }
 .publication-container{
     flex: 0 0 33.333333%;
+    margin-top: 10px;
 }
 
 .publication-nav .pub-ul {
@@ -228,6 +229,7 @@ main {
 
 .publication img{
     width: 100%;
+    height: 500px;
 }
 
 
@@ -260,12 +262,21 @@ main {
 .publication-details {
     margin-top: 20px;
     margin-left: 10px;
+    margin-right: 10px;
 }
 
 .publication-details p {
     margin-top: 10px;
 }
 
+.publications-profile-details{
+    margin-bottom: 50px;
+}
+
+.publications-profile-details img{
+    width: 150px;
+    height: 150px;
+}
 /*Trainings*/
 
 .course-container {
@@ -333,8 +344,9 @@ main {
 .details-profile-photo-section {
     display: flex;
     flex-wrap: wrap;
-    flex-direction: row-reverse;
-    justify-content: space-between;
+    flex-direction: row;
+    justify-content: flex-start;
+    gap: 20px;
     margin-left: 500px;
     margin-right: 500px;
 }
@@ -343,6 +355,7 @@ main {
     width: 200px;
     padding: 0;
 }
+
 
 .details-profile-photo-section .publication a img {
     border-radius: 5px;

@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <div class="publications-container">
+        <div class="publication-container">
+            <div class="publication">
+                <img src="{{ object.photo.url}}" alt="Publication Image">
+                <div class="publication-details">
+                    <h2>{{ object.title }}</h2>
+                    <p>{{ object.description }}</p>
+                    <p>{{ object.date_of_publication }}</p>
+                </div>
+                <div class="publication-buttons">
+                    <button class="like-button">
+                        <i class="fa-regular fa-thumbs-up"></i>
+                    </button>
+                    <button class="comment-button">
+                        <i class="fa-regular fa-comment"></i>
+                    </button>
+                    <button class="share-button">
+                        <i class="fa-solid fa-share"></i>
+                    </button>
+                    {% if object.user == request.user %}
+                        <button class="edit-button">
+                            <a href="{% url 'edit-publication' pk=object.pk %}">
+                                <i class="fa-regular fa-pen-to-square"></i>
+                            </a>
+                        </button>
+                        <button class="delete-button">
+                            <a href="{% url 'delete-publication' pk=object.pk %}">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </a>
+                        </button>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <nav class="publication-nav">
+        <ul class="pub-ul">
+            <li class="pub-li"><a href="#">General Events</a></li>
+            <li class="pub-li"><a href="#">Zoology Events</a></li>
+            <li class="pub-li"><a href="#">Botany Events</a></li>
+            <li class="pub-li"><a href="#">Microbiology Events</a></li>
+        </ul>
+    </nav>
+    {% if events %}
+        {% for event in all_events %}
+            <div class="publications-container" role="button">
+                <div class="publication-container" role="button">
+                    <div class="publication">
+                        <div class="publication-details">
+                            <h2>{{ event.title }}</h2>
+                            <p>{{ event.description }}</p>
+                            <p>Event Time: {{ event.event_time }}</p>
+                            <p>Date: {{ event.date_of_publication }}</p>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    {% else %}
+        <h2 class="no-events">Not events yet!</h2>
+    {% endif %}
+{% endblock %}

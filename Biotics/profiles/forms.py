@@ -21,7 +21,10 @@ class LoginForm(AuthenticationForm):
 class BioticsUserEditForm(forms.ModelForm):
     class Meta:
         model = BioticsUserModel
-        fields = ('username', 'first_name', 'last_name', 'email', 'profile_picture', 'gender', 'biology_type', 'rank')
+        fields = ('username', 'first_name', 'last_name',
+                  'email', 'profile_picture', 'gender',
+                  'age', 'biology_type', 'rank'
+                  )
         exclude = ('password',)
         labels = {
             'username': 'Username:',

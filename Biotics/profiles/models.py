@@ -2,7 +2,7 @@ from django.contrib.auth.models import AbstractUser, PermissionsMixin
 from django.core.validators import MinLengthValidator
 from django.db import models
 
-from Biotics.profiles.validators import check_string_contains_only_letters
+from Biotics.profiles.validators import check_string_contains_only_letters, age_validator
 
 
 # Create your models here.
@@ -46,7 +46,7 @@ class BioticsUserModel(AbstractUser, PermissionsMixin):
     gender = models.CharField(choices=GENDER_CHOICES, max_length=13, blank=True)
     biology_type = models.CharField(choices=BIOLOGY_CHOICES, max_length=13, blank=True)
     rank = models.CharField(choices=RANK_CHOICES, max_length=20, blank=True)
-    age = models.PositiveIntegerField(blank=True, null=True)
+    age = models.PositiveIntegerField(default=18, blank=True, null=True, validators=[age_validator])
 
     def get_user_name(self):
         if self.first_name and self.last_name:

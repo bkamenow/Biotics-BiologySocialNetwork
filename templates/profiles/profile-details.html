@@ -47,8 +47,8 @@
     <h2 class="pub-header">Publications</h2>
     <div class="details-profile-photo-section">
         {% for pub in object.publications.all %}
-                <div class="publication">
-                    <a href="#">
+                <div class="publications-profile-details">
+                    <a href="{% url 'details-publication' pk=pub.pk %}">
                         <img src="{{ pub.photo.url }}" alt="Publication Image">
                     </a>
                 </div>

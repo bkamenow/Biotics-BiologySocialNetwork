@@ -16,5 +16,3 @@ def trainings_page(request):
     return render(request, template_name='common/trainings.html')
 
 
-def events_page(request):
-    return render(request, template_name='common/events.html')

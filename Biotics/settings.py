@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'Biotics.profiles',
     'Biotics.biology',
     'Biotics.publications',
+    'Biotics.events',
 ]
 
 MIDDLEWARE = [

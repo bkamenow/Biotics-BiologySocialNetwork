@@ -36,6 +36,9 @@
                 <li><a href="{% url 'publications' %}">Publications</a></li>
                 <li><a href="{% url 'events' %}">Events</a></li>
                 <li><a href="{% url 'trainings' %}">Trainings</a></li>
+                {% if request.user.is_superuser %}
+                    <li><a href="{% url 'approval-event' %}">For Approve</a></li>
+                {% endif %}
             </ul>
             <hr>
         </nav>

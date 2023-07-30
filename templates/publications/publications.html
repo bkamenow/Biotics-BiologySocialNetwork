@@ -30,16 +30,23 @@
                             <p>{{ pub.description }}</p>
                             <p>{{ pub.date_of_publication }}</p>
                         </div>
+                        <h2>Comments</h2>
+                        {% for comment in publication.comment_set.all %}
+                            <p>{{ comment.user.username }} says: {{ comment.content }}</p>
+                        {% endfor %}
                         <div class="publication-buttons">
-                            <button class="like-button">
-                                <i class="fa-regular fa-thumbs-up"></i>
-                            </button>
-                            <button class="comment-button">
-                                <i class="fa-regular fa-comment"></i>
-                            </button>
-                            <button class="share-button">
-                                <i class="fa-solid fa-share"></i>
-                            </button>
+                            <form action="{% url 'like-publication' pk=pub.pk %}" method="post">
+                                {% csrf_token %}
+                                <button class="like-button">
+                                    <i class="fa-regular fa-thumbs-up"></i>
+                                </button>
+                            </form>
+                            <form action="{% url 'add-comment' pk=pub.pk %}" method="post">
+                                {% csrf_token %}
+                                <button class="comment-button">
+                                    <i class="fa-regular fa-comment"></i>
+                                </button>
+                            </form>
                         </div>
                     </div>
                 </div>

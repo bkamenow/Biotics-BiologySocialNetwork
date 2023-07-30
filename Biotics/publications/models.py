@@ -18,3 +18,15 @@ class PublicationModel(models.Model):
     date_of_publication = models.DateField(auto_now=True)
     type_of_publication = models.CharField(choices=TYPE_CHOICES, max_length=13, blank=True)
     user = models.ForeignKey(to=BioticsUserModel, on_delete=models.CASCADE, related_name='publications')
+
+
+class Like(models.Model):
+    publication = models.ForeignKey(PublicationModel, on_delete=models.CASCADE)
+    user = models.ForeignKey(BioticsUserModel, on_delete=models.CASCADE)
+
+
+class Comment(models.Model):
+    publication = models.ForeignKey(PublicationModel, on_delete=models.CASCADE)
+    user = models.ForeignKey(BioticsUserModel, on_delete=models.CASCADE)
+    content = models.TextField(validators=[MinLengthValidator(1)])
+    created_at = models.DateTimeField(auto_now_add=True)

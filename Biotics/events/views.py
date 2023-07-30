@@ -1,7 +1,11 @@
-from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import render
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.shortcuts import get_object_or_404, redirect
+
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView
+from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.views import APIView
 
 from Biotics.events.forms import EventForm
 from Biotics.events.models import EventModel
@@ -13,6 +17,13 @@ from Biotics.events.models import EventModel
 class EventListView(ListView):
     model = EventModel
     template_name = 'events/events.html'
+    context_object_name = 'events'
+    paginate_by = 10
+
+
+class EventForApproveListView(ListView):
+    model = EventModel
+    template_name = 'events/for-approve.html'
     context_object_name = 'events'
     paginate_by = 10
 
@@ -52,3 +63,24 @@ class EventDeleteView(LoginRequiredMixin, DeleteView):
 
     def get_queryset(self):
         return super().get_queryset().filter(user=self.request.user)
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        event = self.get_object()
+        context['event'] = event
+        return context
+
+
+def event_approve(request, pk):
+    event = get_object_or_404(EventModel, pk=pk)
+    if request.method == 'POST' and request.user.is_superuser:
+        event.is_approved = True
+        event.save()
+    return redirect('approval-event')
+
+
+def event_deny(request, pk):
+    event = get_object_or_404(EventModel, pk=pk)
+    if request.method == 'POST' and request.user.is_superuser:
+        event.delete()
+    return redirect('approval-event')

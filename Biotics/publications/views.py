@@ -1,9 +1,13 @@
+from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import redirect, resolve_url
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView
 
-from Biotics.publications.forms import PublicationCreateForm, PublicationEditForm
-from Biotics.publications.models import PublicationModel
+from Biotics.publications.forms import PublicationCreateForm, PublicationEditForm, CommentForm
+from Biotics.publications.models import PublicationModel, Like
+
+from pyperclip import copy
 
 
 class PublicationListView(LoginRequiredMixin, ListView):
@@ -56,3 +60,32 @@ class PublicationDeleteView(LoginRequiredMixin, DeleteView):
         context = super().get_context_data(**kwargs)
         context['publication'] = self.object
         return context
+
+
+@login_required
+def like_publication(request, pk):
+    publication = PublicationModel.objects.get(id=pk)
+    like_objects = Like.objects.filter(publication_id=pk, user=request.user).first()
+
+    if like_objects:
+        like_objects.delete()
+    else:
+        like = Like(publication=publication, user=request.user)
+        like.save()
+
+    return redirect(request.META['HTTP_REFERER'] + f'#{pk}')
+
+
+@login_required
+def add_comment(request, pk):
+    if request.method == 'POST':
+        publication = PublicationModel.objects.get(pk=pk)
+        form = CommentForm(request.POST)
+        if form.is_valid():
+            comment = form.save(commit=False)
+            comment.publication = publication
+            comment.user = request.user
+            comment.save()
+
+        return redirect(request.META['HTTP_REFERER'] + f'#{pk}')
+

@@ -10,21 +10,32 @@
         </ul>
     </nav>
     {% if events %}
-        {% for event in all_events %}
-            <div class="publications-container" role="button">
-                <div class="publication-container" role="button">
-                    <div class="publication">
-                        <div class="publication-details">
-                            <h2>{{ event.title }}</h2>
-                            <p>{{ event.description }}</p>
-                            <p>Event Time: {{ event.event_time }}</p>
-                            <p>Date: {{ event.date_of_publication }}</p>
+        <div class="events">
+            {% for event in events %}
+                {% if event.is_approved %}
+                    <div class="publications-container" role="button">
+                        <div class="publication-container" role="button">
+                            <div class="publication">
+                                <div class="publication-details">
+                                    <h2>{{ event.title }}</h2>
+                                    <p>{{ event.description }}</p>
+                                    <p>Event Time: {{ event.event_time }}</p>
+                                    <p>Date: {{ event.date_of_publication }}</p>
+                                    <p>Duration: {{ event.duration }}</p>
+                                    <p>Location: {{ event.location }}</p>
+                                    <p>Organizer: {{ event.user.username }}</p>
+                                    {% if user.is_authenticated and event.user == user %}
 
+                                        <a href="{% url 'edit-event' event.pk %}" class="btn btn-primary">Edit</a>
+                                        <a href="{% url 'delete-event' event.pk %}" class="btn btn-danger">Delete</a>
+                                    {% endif %}
+                                </div>
+                            </div>
                         </div>
                     </div>
-                </div>
-            </div>
-        {% endfor %}
+                {% endif %}
+            {% endfor %}
+        </div>
     {% else %}
         <h2 class="no-events">Not events yet!</h2>
     {% endif %}

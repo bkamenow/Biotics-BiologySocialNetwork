@@ -162,11 +162,10 @@ main {
 .publications-container{
     display: flex;
     flex-wrap: wrap;
-    flex-direction: column;
+    flex-direction: column-reverse;
     justify-content: space-between;
     margin-left: 510px;
-    margin-top: 40px;
-    margin-bottom: 40px;
+    margin-top: 10px;
     max-width: 55%;
 }
 .publication-container{
@@ -225,6 +224,10 @@ main {
     padding-bottom: 10px;
     background-color: #05316c;
     color: whitesmoke;
+}
+
+.publication form{
+    display: inline-block;
 }
 
 .publication img{
@@ -367,4 +370,7 @@ main {
     margin-bottom: 10px;
 }
 
-
+.events{
+    display: flex;
+    flex-direction: column-reverse;
+}

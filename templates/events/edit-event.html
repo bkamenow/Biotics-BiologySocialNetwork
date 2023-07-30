@@ -1,10 +1,22 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-</head>
-<body>
-
-</body>
-</html>
+{% extends 'base.html' %}
+{% block content %}
+    <main>
+        <div class="container">
+        <div class="create-container">
+            <h2 class="header">Edit Event</h2>
+            <span class="close-button" role="button"><a href="javascript:history.back()">×</a></span>
+            <form method="post" enctype="multipart/form-data">
+                {% for field in form %}
+                    <p class="error">{{ field.errors }}</p>
+                    <div class="label-input">
+                        <label>{{ field.label }}</label>
+                        {{ field }}
+                    </div>
+                {% endfor %}
+                <button class="submit">Edit</button>
+                {% csrf_token %}
+            </form>
+        </div>
+    </div>
+    </main>
+{% endblock %}

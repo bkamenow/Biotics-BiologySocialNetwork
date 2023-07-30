@@ -100,3 +100,10 @@
 .publication-buttons button a{
     color: black;
 }
+
+
+.publication-details button:hover{
+    background-color: #03417c;
+    color: white;
+    cursor: pointer;
+}

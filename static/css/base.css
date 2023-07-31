@@ -374,3 +374,18 @@ main {
     display: flex;
     flex-direction: column-reverse;
 }
+
+
+
+/*Comments*/
+#id_content {
+    height: 30px;
+    outline: none;
+}
+
+.comment-list{
+    list-style: none;
+    padding: 0;
+    margin-top: 5px;
+}
+

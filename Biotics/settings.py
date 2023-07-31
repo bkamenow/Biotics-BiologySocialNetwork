@@ -42,7 +42,6 @@ INSTALLED_APPS = [
     'Biotics.publications',
     'Biotics.events',
 
-    'rest_framework',
 ]
 
 MIDDLEWARE = [

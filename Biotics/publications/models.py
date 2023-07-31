@@ -18,6 +18,10 @@ class PublicationModel(models.Model):
     date_of_publication = models.DateField(auto_now=True)
     type_of_publication = models.CharField(choices=TYPE_CHOICES, max_length=13, blank=True)
     user = models.ForeignKey(to=BioticsUserModel, on_delete=models.CASCADE, related_name='publications')
+    likes_count = models.PositiveIntegerField(default=0)
+
+    def user_has_liked(self, user):
+        return self.like_set.filter(user=user).exists()
 
 
 class Like(models.Model):

@@ -15,6 +15,11 @@ class PublicationListView(LoginRequiredMixin, ListView):
     template_name = 'publications/publications.html'
     context_object_name = 'all_publications'
 
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['form'] = CommentForm()  # Include the CommentForm instance in the context
+        return context
+
 
 class PublicationCreateView(LoginRequiredMixin, CreateView):
     model = PublicationModel
@@ -69,9 +74,13 @@ def like_publication(request, pk):
 
     if like_objects:
         like_objects.delete()
+        publication.likes_count -= 1
     else:
         like = Like(publication=publication, user=request.user)
         like.save()
+        publication.likes_count += 1
+
+    publication.save()
 
     return redirect(request.META['HTTP_REFERER'] + f'#{pk}')
 
@@ -88,4 +97,5 @@ def add_comment(request, pk):
             comment.save()
 
         return redirect(request.META['HTTP_REFERER'] + f'#{pk}')
+
 

@@ -21,7 +21,7 @@ class CommentForm(forms.ModelForm):
         model = Comment
         fields = ['content']
         widgets = {
-            'comment': forms.Textarea(
+            'content': forms.Textarea(
                 attrs={
                     'placeholder': 'Add comment...'
                 }

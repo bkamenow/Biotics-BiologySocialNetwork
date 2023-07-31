@@ -3,9 +3,7 @@ from django.shortcuts import get_object_or_404, redirect
 
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView
-from rest_framework import status
-from rest_framework.response import Response
-from rest_framework.views import APIView
+
 
 from Biotics.events.forms import EventForm
 from Biotics.events.models import EventModel

@@ -41,6 +41,7 @@ INSTALLED_APPS = [
     'Biotics.biology',
     'Biotics.publications',
     'Biotics.events',
+    'Biotics.trainings',
 
 ]
 
@@ -137,3 +138,11 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
+
+STRIPE_SECRET_KEY = os.environ.get(
+    'STRIPE_SECRET_KEY',
+    'sk_test_51NaMzWJ1CIgqWNblj8AiY0w2NYHMF43DFdwB2xyUByARZlyP8mQt59SN0FGkstlrjyUb4OOgdgGgC9KQIyzikJaW00CCW4VZmR'
+)
+
+STRIPE_PUBLISHABLE_KEY = 'pk_test_51NaMzWJ1CIgqWNb' \
+                         'lXIKkH3lmmQP66bRxXlr1SjxXHpZVhx5a3c1MSVpKDRT7N0wEK7ck6FvJxGcLp1S7v7V6PRzP00Nla31lkA'

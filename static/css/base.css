@@ -310,6 +310,7 @@ main {
     border-radius: 5px;
     padding: 10px;
     max-width: 30%;
+    width: 30%;
 }
 
 .course img {
@@ -319,9 +320,16 @@ main {
     margin-right: 10px;
 }
 
+
+
 .course-details {
     overflow: hidden;
     color: whitesmoke;
+}
+
+.course-details a {
+    color: steelblue;
+    margin: 5px;
 }
 
 .course-details h2 {

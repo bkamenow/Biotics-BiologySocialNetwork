@@ -10,9 +10,3 @@ def home_page(request):
 
 def page_not_found_view(request, exception):
     return render(request, template_name='404.html', status=404)
-
-
-def trainings_page(request):
-    return render(request, template_name='common/trainings.html')
-
-

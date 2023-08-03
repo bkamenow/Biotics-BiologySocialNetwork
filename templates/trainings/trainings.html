@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load training_tags %}
 {% load static %}
 {% block content %}
     <h1 class="course-h1">Trainings</h1>
@@ -16,7 +17,11 @@
                         <a href="{% url 'edit_training' pk=training.pk %}">Edit</a>
                         <a href="{% url 'delete_training' pk=training.pk %}">Delete</a>
                      {% else %}
-                         <button><a href="{% url 'join_training' pk=training.pk %}">Join</a></button>
+                         {% if request.user|has_paid_for_training:training %}
+                             <p class="joined">Joined</p>
+                         {% else %}
+                            <button><a href="{% url 'payment' pk=training.pk %}" target="_blank">Join</a></button>
+                         {% endif %}
                     {% endif %}
                 </div>
             </div>

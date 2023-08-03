@@ -46,7 +46,7 @@
                                 </button>
                             </form>
                             {% else %}
-                                <form action="{% url 'like-publication' pk=pub.pk %}" method="post">
+                                <form action="{% url 'like-publication' pk=pub.id %}" method="post">
                                 {% csrf_token %}
                                 <button class="like-button">
                                     <i class="fa-regular fa-thumbs-up"></i>

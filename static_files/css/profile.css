@@ -1,8 +1,8 @@
-.registration-container {
+.create-container {
     width: 522px;
     padding: 30px 60px 30px 50px;
     margin: 100px auto auto;
-    background-image: url("/staticfiles/images/singup-background.jpg");
+    background-image: url("/static/images/singup-background.jpg");
     transform:
     /*perspective(750px)*/
     /*translate3d(0px, 0px, -250px)*/
@@ -17,8 +17,9 @@
 /*    transform: translate3d(0px, 0px, -250px);*/
 /*  }*/
 
-.register-input,
-.submit {
+input,
+.submit,
+select{
     display: block;
     width: 100%;
     padding: 10px;
@@ -59,7 +60,7 @@
     width: 1176px;
     padding: 30px 70px 30px 50px;
     margin: 260px auto auto;
-    background-image: url(/staticfiles/images/singup-background.jpg);
+    background-image: url(/static/images/singup-background.jpg);
 
     border-radius: 20px;
     border: 5px solid #e6e6e6;
@@ -68,7 +69,10 @@
 }
 
 #details-img {
-    width: 25%;
+    height: 100px;
+    width: 100px;
+    border-radius: 50%;
+    object-fit: cover;
 }
 
 .profile-details-header {
@@ -100,8 +104,23 @@
 #details-description {
     flex-wrap: wrap;
     color: whitesmoke;
-    text-align: center;
     padding: 5px 0;
     opacity: 100%;
     margin-bottom: 20px;
+    margin-left: 20px;
+
 }
+
+.second-option {
+    color: whitesmoke;
+    text-align: center;
+}
+
+.second-option a {
+    color: steelblue;
+}
+
+form{
+    color: white;
+}
+

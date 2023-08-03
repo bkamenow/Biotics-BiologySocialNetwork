@@ -3,7 +3,7 @@
     justify-content: space-between;
     background-color: rgba(0, 0, 0, 0.1); /* Gray faded background */
     padding: 50px 200px;
-    margin: 10px 0;
+    margin: 10px 0 24px;
 }
 
 .choice {

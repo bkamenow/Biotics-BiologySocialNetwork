@@ -7,13 +7,13 @@ class PublicationCreateForm(forms.ModelForm):
     class Meta:
         model = PublicationModel
         fields = '__all__'
-        exclude = {'user'}
+        exclude = {'user', 'likes_count'}
 
 
 class PublicationEditForm(forms.ModelForm):
     class Meta:
         model = PublicationModel
-        exclude = ['publication', 'user']
+        exclude = ['photo', 'user', 'likes_count']
 
 
 class CommentForm(forms.ModelForm):

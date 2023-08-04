@@ -161,8 +161,7 @@ main {
 /*Publications*/
 .publications-container{
     display: flex;
-    flex-wrap: wrap;
-    flex-direction: column-reverse;
+    flex-direction: column;
     justify-content: space-between;
     margin-left: 510px;
     margin-top: 10px;
@@ -397,3 +396,6 @@ main {
     margin-top: 5px;
 }
 
+.joined {
+    color: limegreen;
+}

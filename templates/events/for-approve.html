@@ -1,18 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    <nav class="publication-nav">
-        <ul class="pub-ul">
-            <li class="pub-li"><a href="#">General Events</a></li>
-            <li class="pub-li"><a href="#">Zoology Events</a></li>
-            <li class="pub-li"><a href="#">Botany Events</a></li>
-            <li class="pub-li"><a href="#">Microbiology Events</a></li>
-        </ul>
-    </nav>
     {% if events %}
+        <div class="publications-container" role="button">
         {% for event in events %}
             {% if not event.is_approved %}
-                <div class="publications-container" role="button">
                     <div class="publication-container" role="button">
                         <div class="publication">
                             <div class="publication-details">
@@ -34,9 +26,9 @@
                             </div>
                         </div>
                     </div>
-                </div>
             {% endif %}
         {% endfor %}
+        </div>
     {% else %}
         <h2 class="no-events">No events for approval!</h2>
     {% endif %}

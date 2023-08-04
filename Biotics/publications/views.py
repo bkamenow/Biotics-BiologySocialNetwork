@@ -1,6 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import redirect, resolve_url
+from django.shortcuts import redirect, resolve_url, render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView
 
@@ -14,6 +14,9 @@ class PublicationListView(LoginRequiredMixin, ListView):
     model = PublicationModel
     template_name = 'publications/publications.html'
     context_object_name = 'all_publications'
+
+    def get_queryset(self):
+        return PublicationModel.objects.order_by('-timestamp')
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
@@ -49,6 +52,23 @@ class PublicationDetailView(DetailView):
     model = PublicationModel
     template_name = 'publications/details-publication.html'
     context_object_name = 'publication'
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        publication = self.object
+        likes = publication.like_set.all()
+        publication_is_liked_by_user = likes.filter(user=self.request.user)
+        comments = publication.comment_set.all()
+        comment_form = CommentForm()
+        user = self.request.user
+
+        context['likes'] = likes
+        context['comments'] = comments
+        context['comment_form'] = comment_form
+        context['photo_is_liked_by_user'] = publication_is_liked_by_user
+        context['user'] = user
+
+        return context
 
 
 class PublicationDeleteView(LoginRequiredMixin, DeleteView):
@@ -97,5 +117,21 @@ def add_comment(request, pk):
             comment.save()
 
         return redirect(request.META['HTTP_REFERER'] + f'#{pk}')
+
+
+def filtered_publications(request, filter_type):
+    comment_form = CommentForm()
+
+    if filter_type == 'Botany':
+        publications = PublicationModel.objects.filter(type_of_publication='Botany').order_by('-timestamp')
+    elif filter_type == 'Microbiology':
+        publications = PublicationModel.objects.filter(type_of_publication='Microbiology').order_by('-timestamp')
+    elif filter_type == 'Zoology':
+        publications = PublicationModel.objects.filter(type_of_publication='Zoology').order_by('-timestamp')
+    else:
+        publications = PublicationModel.objects.all().order_by('-timestamp')
+
+    return render(request, 'publications/filtered_publications.html',
+                  {'publications': publications, 'filter_type': filter_type, 'form': comment_form})
 
 

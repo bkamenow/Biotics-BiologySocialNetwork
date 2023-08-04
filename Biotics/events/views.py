@@ -82,3 +82,5 @@ def event_deny(request, pk):
     if request.method == 'POST' and request.user.is_superuser:
         event.delete()
     return redirect('approval-event')
+
+

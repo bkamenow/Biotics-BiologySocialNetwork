@@ -12,7 +12,7 @@
         </ul>
     </nav>
     <div class="publications-container">
-        {% for pub in all_publications %}
+        {% for pub in publications %}
                 <div class="publication-container" id="{{ pub.pk }}">
                     <div class="publication">
                         <a href="{% url 'profile_details' pub.user.pk %}">
@@ -62,7 +62,7 @@
                                         </li>
                                     {% endfor %}
                                 </ul>
-                                <form action="{% url 'add-comment' pk=pub.pk %}" method="post" id="comment-form-{{ pub.pk }}" class="hidden">
+                                <form action="{% url 'add-comment' pk=pub.pk %}" method="post" id="comment-form-{{ pub.pk }}">
                                     {% csrf_token %}
                                     {{ form.content }}
                                     <button type="submit">

@@ -20,3 +20,6 @@ __pycache__/
 
 # Ignore .env files (environment variables)
 *.env
+
+# Ignore the static_files folder
+/static_files/

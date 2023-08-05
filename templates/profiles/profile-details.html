@@ -1,0 +1,58 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+     <div class="container">
+        <div class="create-container">
+            <h2 class="profile-details-header">Profile Details</h2>
+             <span class="close-button" role="button"><a href="javascript:history.back()">×</a></span>
+            {% if object.profile_picture %}
+                <img id="details-img" src="{{ object.profile_picture.url }}"
+                     alt="profile img"/>
+            {% else %}
+                <img id="details-img" src="{% static '/images/user.png' %}" alt="profile img"/>
+            {% endif %}
+
+            <div id="info-wrapper">
+                <p id="details-title">{{ object.username }}</p>
+                <div class="bg-details">
+                    <div id="details-description">
+                        {% if object.get_user_name %}
+                            <p>Name: {{ object.get_user_name }}</p>
+                        {% endif %}
+                        {% if object.age %}
+                            <p>Age: {{ object.age }}</p>
+                        {% endif %}
+                        {% if object.gender %}
+                            <p>Gender: {{ object.gender }}</p>
+                        {% endif %}
+                        {% if object.biology_type %}
+                            <p>Biology type: {{ object.biology_type }}</p>
+                        {% endif %}
+                        {% if object.rank %}
+                            <p>Rank: {{ object.rank }}</p>
+                        {% endif %}
+                        <p id="details-email">Email: {{ object.email}}</p>
+                        <p id="nutrition">Followers: 1234</p>
+                    </div>
+                </div>
+                <div id="action-buttons">
+                    {% if request.user == bioticsusermodel %}
+                        <a href="{% url 'edit_profile' pk=object.pk %}" id="edit-btn-acc">Edit</a>
+                        <a href="{% url 'delete_profile' pk=object.pk %}" id="delete-btn-acc">Delete</a>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+    <h2 class="pub-header">Publications</h2>
+    <div class="details-profile-photo-section">
+        {% for pub in object.publications.all %}
+                <div class="publications-profile-details">
+                    <a href="{% url 'details-publication' pk=pub.pk %}">
+                        <img src="{{ pub.photo.url }}" alt="Publication Image">
+                    </a>
+                </div>
+
+        {% endfor %}
+    </div>
+{% endblock %}

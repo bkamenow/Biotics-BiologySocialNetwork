@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load training_tags %}
+{% load static %}
+{% block content %}
+    <h1 class="course-h1">Trainings</h1>
+    {% for training in all_trainings %}
+        <div class="course-container" role="button">
+            <div class="course">
+                <img src="{{ training.photo.url }}" alt="Publication Image">
+                <div class="course-details">
+                    <h2>{{ training.title }}</h2>
+                    <p>Start: 10/11/23</p>
+                    <p>End: 10/11/23</p>
+                    <p>{{ training.description }}</p>
+                    <p>Price: {{ training.price }}</p>
+                     {% if request.user.is_superuser %}
+                        <a href="{% url 'edit_training' pk=training.pk %}">Edit</a>
+                        <a href="{% url 'delete_training' pk=training.pk %}">Delete</a>
+                     {% else %}
+                         {% if request.user|has_paid_for_training:training %}
+                             <p class="joined">Joined</p>
+                         {% else %}
+                            <button><a href="{% url 'payment' pk=training.pk %}" target="_blank">Join</a></button>
+                         {% endif %}
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    {% endfor %}
+{% endblock %}

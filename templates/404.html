@@ -1,0 +1,23 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+     <link rel="stylesheet" href="{% static '/css/404.css' %}">
+</head>
+<body>
+    <div class="not-found-img">
+        <img src="{% static '/images/404.jpg' %}" alt="404 not found photo">
+    </div>
+    <div class="not-found">
+        <h1>
+            Uh oh,<br> something broke.
+        </h1>
+        <h3>Error 404 - page not found.</h3>
+        <a href="#">
+            <button>Return to Biotics</button>
+        </a>
+    </div>
+</body>
+</html>

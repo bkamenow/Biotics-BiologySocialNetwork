@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load custom_filter %}
+{% block content %}
+    <div class="container">
+        <div class="create-container">
+            <h2 class="header">Create Profile</h2>
+            <span class="close-button"><a href="javascript:history.back()">×</a></span>
+            <form method="post">
+                {% csrf_token %}
+                {{ form.username.errors }}
+                {{ form.username|placeholder:'Username' }}
+                {{ form.email.errors }}
+                {{ form.email|placeholder:'Email' }}
+                {{ form.password1|placeholder:'Password' }}
+                {{ form.password1.errors }}
+                {{ form.password2|placeholder:'Repeat Password' }}
+                {{ form.password2.errors }}
+                <div class="terms">
+                    <input class="register-input" type="checkbox" id="termsCheckbox" required>
+                    <label for="termsCheckbox">I agree to the <a href="#">Terms and Conditions and Privacy Policy.</a></label>
+                </div>
+                <button class="submit">Register</button>
+            </form>
+             <div class="second-option">
+                <p>Have an account? <a href="{% url 'login_page' %}">Log In</a></p>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+

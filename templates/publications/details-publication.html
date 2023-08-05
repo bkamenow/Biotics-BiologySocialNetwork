@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+{% load publications_tags %}
+
+{% block content %}
+
+    <div class="publications-container">
+        <div class="publication-container">
+            <div class="publication">
+                <img src="{{ publication.photo.url }}" alt="Publication Image">
+                <div class="publication-details">
+                    <h2>{{ publication.title }}</h2>
+                    <p>{{ publication.description }}</p>
+                    <p>{{ publication.date_of_publication }}</p>
+                    <p>Likes: {{ publication.likes_count }}</p>
+                </div>
+                <div class="publication-buttons">
+                    {% if request.user.is_authenticated and publication|user_has_liked:request.user %}
+                        <form action="{% url 'like-publication' pk=publication.pk %}" method="post">
+                            {% csrf_token %}
+                            <button class="like-button">
+                                <i class="fa-solid fa-thumbs-up"></i>
+                            </button>
+                        </form>
+                    {% else %}
+                        <form action="{% url 'like-publication' pk=publication.pk %}" method="post">
+                            {% csrf_token %}
+                            <button class="like-button">
+                                <i class="fa-regular fa-thumbs-up"></i>
+                            </button>
+                        </form>
+                    {% endif %}
+                    {% if object.user == request.user %}
+                        <button class="edit-button">
+                            <a href="{% url 'edit-publication' pk=object.pk %}">
+                                <i class="fa-regular fa-pen-to-square"></i>
+                            </a>
+                        </button>
+                        <button class="delete-button">
+                            <a href="{% url 'delete-publication' pk=object.pk %}">
+                                <i class="fa-solid fa-trash-can"></i>
+                            </a>
+                        </button>
+                    {% endif %}
+
+                   <div class="comments-section">
+                        <h2>Comments</h2>
+                        <ul class="comment-list">
+                            {% for comment in publication.comment_set.all %}
+                                <li>
+                                    <strong>{{ comment.user.username }}</strong> says: {{ comment.content }}
+                                </li>
+                            {% endfor %}
+                        </ul>
+                        <form action="{% url 'add-comment' pk=publication.pk %}" method="post" id="comment-form-{{ publication.pk }}">
+                            {% csrf_token %}
+                            {{ comment_form.content }}
+                            <button type="submit">
+                                Post
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}

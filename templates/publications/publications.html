@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load publications_tags %}
+{% load static %}
+
+{% block content %}
+    <nav class="publication-nav">
+        <ul class="pub-ul">
+            <li class="pub-li"><a href="{% url 'publications' %} }}">General Publications</a></li>
+            <li class="pub-li"><a href="{% url 'filtered_publications' 'Zoology' %}">Zoology Publications</a></li>
+            <li class="pub-li"><a href="{% url 'filtered_publications' 'Botany' %}">Botany Publications</a></li>
+            <li class="pub-li"><a href="{% url 'filtered_publications' 'Microbiology' %}">Microbiology Publications</a></li>
+        </ul>
+    </nav>
+    <div class="publications-container">
+        {% for pub in all_publications %}
+                <div class="publication-container" id="{{ pub.pk }}">
+                    <div class="publication">
+                        <a href="{% url 'profile_details' pub.user.pk %}">
+                            <div class="user-profile">
+                                {% if pub.user.profile_picture %}
+                                    <img src="{{ pub.user.profile_picture.url }}" alt="User Profile Picture">
+                                {% else %}
+                                    <img src="{% static '/images/user.png' %}" alt="User Profile Picture">
+                                {% endif %}
+                                <div class="username">{{ pub.user.username }}</div>
+                            </div>
+                        </a>
+                        <img src="{{ pub.photo.url }}" alt="Publication Image">
+
+                        <div class="publication-details">
+                            <h2>{{ pub.title }}</h2>
+                            <p>{{ pub.description }}</p>
+                            <p>{{ pub.date_of_publication }}</p>
+                            <p>Likes: {{ pub.likes_count }}</p>
+                        </div>
+                        {% for comment in publication.comment_set.all %}
+                            <p>{{ comment.user.username }} says: {{ comment.content }}</p>
+                        {% endfor %}
+                        <div class="publication-buttons">
+                            {% if request.user.is_authenticated and pub|user_has_liked:request.user %}
+                                <form action="{% url 'like-publication' pk=pub.pk %}" method="post">
+                                {% csrf_token %}
+                                <button class="like-button">
+                                    <i class="fa-solid fa-thumbs-up"></i>
+                                </button>
+                            </form>
+                            {% else %}
+                                <form action="{% url 'like-publication' pk=pub.id %}" method="post">
+                                {% csrf_token %}
+                                <button class="like-button">
+                                    <i class="fa-regular fa-thumbs-up"></i>
+                                </button>
+                            </form>
+                            {% endif %}
+
+                           <div class="comments-section">
+                                <h2>Comments</h2>
+                                <ul class="comment-list">
+                                    {% for comment in pub.comment_set.all %}
+                                        <li>
+                                            <strong>{{ comment.user.username }}</strong> says: {{ comment.content }}
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                                <form action="{% url 'add-comment' pk=pub.pk %}" method="post" id="comment-form-{{ pub.pk }}" class="hidden">
+                                    {% csrf_token %}
+                                    {{ form.content }}
+                                    <button type="submit">
+                                        Post
+                                    </button>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+        {% endfor %}
+    </div>
+{% endblock %}

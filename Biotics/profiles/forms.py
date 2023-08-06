@@ -1,5 +1,5 @@
 from django import forms
-from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UsernameField
+from django.contrib.auth.forms import UserCreationForm, AuthenticationForm, UsernameField, PasswordResetForm
 
 from Biotics.profiles.models import BioticsUserModel
 
@@ -37,4 +37,8 @@ class BioticsUserEditForm(forms.ModelForm):
             'biology_type': 'Biology type:',
             'rank': 'Rank:',
         }
-        
+
+
+class CustomPasswordResetForm(PasswordResetForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)

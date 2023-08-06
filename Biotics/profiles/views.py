@@ -1,11 +1,12 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.shortcuts import redirect
 
 from django.urls import reverse_lazy
 from django.views import generic as views
 from django.contrib.auth import views as auth_views
 from django.views.generic import DeleteView
 
-from Biotics.profiles.forms import BioticsUserCreateForm, LoginForm, BioticsUserEditForm
+from Biotics.profiles.forms import BioticsUserCreateForm, LoginForm, BioticsUserEditForm, CustomPasswordResetForm
 from Biotics.profiles.models import BioticsUserModel
 
 
@@ -57,3 +58,24 @@ class BioticsUserDeleteView(LoginRequiredMixin, DeleteView):
 
     def get_object(self, queryset=None):
         return self.request.user
+
+
+class CustomPasswordResetView(auth_views.PasswordResetView):
+    template_name = 'profiles/password_reset_form.html'
+    email_template_name = 'registration/password_reset_email.html'
+    form_class = CustomPasswordResetForm
+    success_url = reverse_lazy('password_reset_done')
+
+
+class CustomPasswordResetDoneView(auth_views.PasswordResetDoneView):
+    template_name = 'profiles/password_reset_done.html'
+    # reverse_lazy = redirect('login_page')
+
+
+class CustomPasswordResetConfirmView(auth_views.PasswordResetConfirmView):
+    template_name = 'profiles/password_reset_confirm.html'
+    success_url = reverse_lazy('password_reset_complete')
+
+
+class CustomPasswordResetCompleteView(auth_views.PasswordResetCompleteView):
+    template_name = 'profiles/password_reset_complete.html'

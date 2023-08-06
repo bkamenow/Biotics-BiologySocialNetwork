@@ -2,7 +2,7 @@
 {% block content %}
 
     <div class="biology-container">
-        <div class="biology-header zoology-header">
+        <div class="biology-header ">
             <h1>Botany</h1>
             <p>
                 Botany is a branch of biology that deals with the scientific study of plants.
@@ -25,7 +25,7 @@
                     <p>Botanists study the internal and external structures of plants, including their roots,
                         stems, leaves, flowers, and reproductive organs. Understanding plant morphology helps in
                         species identification and classification.</p>
-                    <a href="#">More info</a>
+                    <a href="{% url 'plantanatomy_morphology' %}">More info</a>
                 </div>
             <hr>
             <div id="">
@@ -34,7 +34,7 @@
                         as photosynthesis, respiration, transpiration, and nutrient uptake. It examines how plants
                         respond to environmental factors like light, water, temperature, and nutrients.
                     </p>
-                    <a href="#">More info</a>
+                    <a href="{% url 'physiology' %}">More info</a>
             </div>
             <hr>
             <div id="">
@@ -43,7 +43,7 @@
                         and shared characteristics. The science of taxonomy aids in organizing and naming plant species,
                         allowing for better communication and understanding within the scientific community.
                     </p>
-                    <a href="#">More info</a>
+                    <a href="{% url 'taxonomy_systematics' %}">More info</a>
             </div>
             <hr>
             <div id="">
@@ -52,7 +52,7 @@
                         It examines how plants adapt to different habitats, their role in ecosystems, and their
                         relationships with other organisms, including animals and microorganisms.
                     </p>
-                    <a href="#">More info</a>
+                    <a href="{% url 'plant_ecology' %}">More info</a>
             </div>
             <hr>
             <div id="">
@@ -61,7 +61,7 @@
                         how they have diversified over time. Genetics plays a crucial role in studying the inheritance
                         of traits in plants and exploring genetic variation within populations.
                     </p>
-                    <a href="#">More info</a>
+                    <a href="{% url 'plantevolution_genetics' %}">More info</a>
             </div>
             <hr>
             <div id="">
@@ -70,14 +70,14 @@
                         biotechnology to develop new plant varieties with desirable traits, improve crop yields,
                         and address agricultural challenges.
                     </p>
-                    <a href="#">More info</a>
+                    <a href="{% url 'plant_biotechnology' %}">More info</a>
             </div>
             <hr>
             <div id="">
                     <h2>Plant Systematics</h2>
                     <p>This branch of botany focuses on the classification and naming of plants, aiming to provide
                         a comprehensive understanding of the relationships between different plant species.</p>
-                    <a href="#">More info</a>
+                    <a href="{% url 'plant_systematics' %}">More info</a>
             </div>
             <hr>
             <div id="">
@@ -85,14 +85,14 @@
                     <p>Ethnobotany examines the relationship between plants and human cultures.
                         It investigates the traditional uses of plants for medicinal, food, ceremonial,
                         and other purposes by indigenous communities.</p>
-                    <a href="#">More info</a>
+                    <a href="{% url 'ethnobotany' %}">More info</a>
             </div>
             <hr>
             <div id="">
                     <h2>Economic Botany</h2>
                     <p>This area of botany studies the economic importance of plants, including their use in agriculture,
                         forestry, medicine, and the production of various products like textiles, paper, and biofuels.</p>
-                    <a href="#">More info</a>
+                    <a href="{% url 'economic_botany' %}">More info</a>
             </div>
             <hr>
         </div>

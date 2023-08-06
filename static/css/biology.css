@@ -1,9 +1,9 @@
 .biology-container {
     display: flex;
-    margin: 160px 241px 50px;
     border: solid 2px #5b80b2;
     border-radius: 30px;
     flex-direction: column;
+    margin: 50px 241px 50px;
 }
 
 .biology-header {
@@ -32,4 +32,8 @@
     background-color: #05316c;
     border-top-left-radius: 30px;
     border-top-right-radius: 30px;
+}
+
+.zoology-header, .botany-header, .microbiology-header {
+    border-radius: 30px;
 }

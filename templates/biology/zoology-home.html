@@ -2,7 +2,7 @@
 {% block content %}
 
     <div class="biology-container">
-        <div class="biology-header zoology-header">
+        <div class="biology-header">
             <h1>Zoology</h1>
             <p>Zoology is a branch of biology that specifically focuses on the scientific study of animals.
                 It is a discipline that examines various aspects of the animal kingdom, including their anatomy,
@@ -19,14 +19,12 @@
                 challenges and promoting sustainable practices for the conservation of wildlife and their habitats.</p>
         </div>
         <div class="biology-content">
-            <!-- Add the content for each type of Zoology -->
-{#            {% for zoology_resource in zoology_resources %}#}
                 <div id="">
                     <h2>Anatomy and Physiology</h2>
                     <p>Zoologists study the internal and external structures of animals and their physiological
                         functions. This involves understanding how different organs and systems work together to
                         support an animal's life processes.</p>
-                    <a href="#">More info</a>
+                    <a href="{% url 'anatomy_and_physiology' %}">More info</a>
                 </div>
             <hr>
             <div id="">
@@ -34,14 +32,14 @@
                     <p> Zoologists classify animals into different groups based on their evolutionary relationships
                         and shared characteristics. This system of classification allows for a better understanding
                         of animal diversity and helps in identifying new species.</p>
-                    <a href="#">More info</a>
+                    <a href="{% url 'taxonomy_classification' %}">More info</a>
             </div>
             <hr>
             <div id="">
                     <h2>Behavior</h2>
                     <p>Zoologists explore the behaviors exhibited by animals, including their social interactions,
                         mating behaviors, communication methods, and responses to environmental stimuli.</p>
-                    <a href="#">More info</a>
+                    <a href="{% url 'behavior' %}">More info</a>
             </div>
             <hr>
             <div id="">
@@ -49,7 +47,7 @@
                     <p>This area of zoology focuses on the interactions between animals and their environment.
                         It examines how animals adapt to their surroundings, their roles in ecosystems, and their
                         influence on other organisms and the environment.</p>
-                    <a href="#">More info</a>
+                    <a href="{% url 'ecology' %}">More info</a>
             </div>
             <hr>
             <div id="">
@@ -57,7 +55,7 @@
                     <p>Zoologists study the processes and patterns of animal evolution over time, tracing the origin
                         of species and understanding how they have changed and diversified through natural selection
                         and other evolutionary mechanisms.</p>
-                    <a href="#">More info</a>
+                    <a href="{% url 'evolution' %}">More info</a>
             </div>
             <hr>
             <div id="">
@@ -65,7 +63,7 @@
                     <p>Zoologists investigate the genetic makeup of animals to comprehend inheritance patterns,
                         genetic variation within populations, and how genes influence an animal's physical and
                         behavioral traits.</p>
-                    <a href="#">More info</a>
+                    <a href="{% url 'genetics' %}">More info</a>
             </div>
             <hr>
             <div id="">
@@ -73,10 +71,9 @@
                     <p>Zoologists play a crucial role in wildlife conservation efforts. They assess the status
                         of endangered species, develop strategies for habitat preservation, and implement plans
                         to protect biodiversity.</p>
-                    <a href="#">More info</a>
+                    <a href="{% url 'conservation' %}">More info</a>
             </div>
             <hr>
-{#            {% endfor %}#}
         </div>
     </div>
 {% endblock %}

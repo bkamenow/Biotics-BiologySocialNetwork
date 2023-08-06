@@ -2,7 +2,7 @@
 {% block content %}
 
     <div class="biology-container">
-        <div class="biology-header zoology-header">
+        <div class="biology-header ">
             <h1>Microbiology</h1>
             <p>
                 Microbiology is a specialized branch of biology that focuses on the study of microorganisms,
@@ -27,7 +27,7 @@
                         Bacteriologists investigate various aspects of bacteria, including their morphology,
                         physiology, genetics, pathogenicity (ability to cause disease), and roles in biogeochemical
                         cycles.</p>
-                    <a href="#">More info</a>
+                    <a href="{% url 'bacteriology' %}">More info</a>
                 </div>
             <hr>
             <div id="">
@@ -37,7 +37,7 @@
                         replication mechanisms, interactions with host cells, and the diseases they cause in humans,
                         animals, and plants.
                     </p>
-                    <a href="#">More info</a>
+                    <a href="{% url 'virology' %}">More info</a>
             </div>
             <hr>
             <div id="">
@@ -46,7 +46,7 @@
                         Mycologists investigate fungal diversity, morphology, life cycles, ecological roles,
                         and interactions with other organisms, both beneficial and harmful.
                     </p>
-                    <a href="#">More info</a>
+                    <a href="{% url 'mycology' %}">More info</a>
             </div>
             <hr>
             <div id="">
@@ -55,7 +55,7 @@
                         Protozoologists examine their diversity, life cycles, ecological roles,
                         and impact on human health and ecosystems.
                     </p>
-                    <a href="#">More info</a>
+                    <a href="{% url 'protozoology' %}">More info</a>
             </div>
             <hr>
             <div id="">
@@ -64,7 +64,7 @@
                         of microorganisms. It investigates how microorganisms obtain and utilize nutrients,
                         produce energy, and adapt to various environmental conditions.
                     </p>
-                    <a href="#">More info</a>
+                    <a href="{% url 'microbial_physiology' %}">More info</a>
             </div>
             <hr>
             <div id="">
@@ -72,7 +72,7 @@
                     <p>Microbial genetics is concerned with the study of the genetic material of microorganisms.
                         This field examines how genetic information is transmitted, replicated, and expressed in microorganisms.
                     </p>
-                    <a href="#">More info</a>
+                    <a href="{% url 'microbial_genetics' %}">More info</a>
             </div>
             <hr>
             <div id="">
@@ -80,7 +80,7 @@
                     <p>Environmental microbiology examines the role of microorganisms in various ecosystems
                         and their interactions with the environment. It investigates microbial contributions
                         to biogeochemical cycles, nutrient cycling, and pollution remediation.</p>
-                    <a href="#">More info</a>
+                    <a href="{% url 'environmental_microbiology' %}">More info</a>
             </div>
             <hr>
             <div id="">
@@ -88,7 +88,7 @@
                     <p>Medical microbiology focuses on the study of microorganisms relevant to human health.
                         This field investigates infectious diseases, antibiotic resistance, and strategies for
                         disease prevention and control.</p>
-                    <a href="#">More info</a>
+                    <a href="{% url 'medical_microbiology' %}">More info</a>
             </div>
             <hr>
             <div id="">
@@ -96,7 +96,7 @@
                     <p>Industrial microbiology applies microorganisms in various industrial processes,
                         such as fermentation for food and beverage production, bioremediation, and the production
                         of pharmaceuticals and enzymes.</p>
-                    <a href="#">More info</a>
+                    <a href="{% url 'industrial_microbiology' %}">More info</a>
             </div>
             <hr>
         </div>

@@ -1,5 +1,4 @@
 from django.contrib.auth.mixins import LoginRequiredMixin
-from django.shortcuts import redirect
 
 from django.urls import reverse_lazy
 from django.views import generic as views
@@ -8,6 +7,7 @@ from django.views.generic import DeleteView
 
 from Biotics.profiles.forms import BioticsUserCreateForm, LoginForm, BioticsUserEditForm, CustomPasswordResetForm
 from Biotics.profiles.models import BioticsUserModel
+from Biotics.trainings.models import TrainingModel, Payment
 
 
 class BioticsUserRegisterView(views.CreateView):
@@ -34,10 +34,8 @@ class BioticsUserDetailsView(views.DetailView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         total_publications = self.object.publications.count()
-        print(f"Total Publications for User {self.object}: {total_publications}")
         context.update({
             'total_publications': total_publications,
-
         })
         return context
 
@@ -61,21 +59,20 @@ class BioticsUserDeleteView(LoginRequiredMixin, DeleteView):
 
 
 class CustomPasswordResetView(auth_views.PasswordResetView):
-    template_name = 'profiles/password_reset_form.html'
+    template_name = 'password_reset/password_reset_form.html'
     email_template_name = 'registration/password_reset_email.html'
     form_class = CustomPasswordResetForm
     success_url = reverse_lazy('password_reset_done')
 
 
 class CustomPasswordResetDoneView(auth_views.PasswordResetDoneView):
-    template_name = 'profiles/password_reset_done.html'
-    # reverse_lazy = redirect('login_page')
+    template_name = 'password_reset/password_reset_done.html'
 
 
 class CustomPasswordResetConfirmView(auth_views.PasswordResetConfirmView):
-    template_name = 'profiles/password_reset_confirm.html'
+    template_name = 'password_reset/password_reset_confirm.html'
     success_url = reverse_lazy('password_reset_complete')
 
 
 class CustomPasswordResetCompleteView(auth_views.PasswordResetCompleteView):
-    template_name = 'profiles/password_reset_complete.html'
+    template_name = 'password_reset/password_reset_complete.html'

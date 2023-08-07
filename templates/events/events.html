@@ -6,8 +6,8 @@
         <div class="events">
             {% for event in events %}
                 {% if event.is_approved %}
-                    <div class="publications-container" role="button">
-                        <div class="publication-container" role="button">
+                    <div class="publications-container" id="{{ event.pk }}">
+                        <div class="publication-container">
                             <div class="publication">
                                 <div class="publication-details">
                                     <h2>{{ event.title }}</h2>
@@ -17,10 +17,19 @@
                                     <p>Duration: {{ event.duration }}</p>
                                     <p>Location: {{ event.location }}</p>
                                     <p>Organizer: {{ event.user.username }}</p>
+                                    <p>Going: {{ event.participants.count }}</p>
                                     {% if user.is_authenticated and event.user == user %}
-
                                         <a href="{% url 'edit-event' event.pk %}" class="btn btn-primary">Edit</a>
                                         <a href="{% url 'delete-event' event.pk %}" class="btn btn-danger">Delete</a>
+                                    {% endif %}
+                                    {% if user.is_authenticated %}
+                                        {% if user in event.participants.all %}
+                                            <button><a href="{% url 'unjoin_event' event.pk %}" style="color: #3fe87d">Joined</a></button>
+                                        {% else %}
+                                            <button><a href="{% url 'join_event' event.pk %}">Join</a></button>
+                                        {% endif %}
+                                    {% else %}
+                                        <button><a href="{% url 'login' %}" style="color: black">Login to Join</a></button>
                                     {% endif %}
                                 </div>
                             </div>

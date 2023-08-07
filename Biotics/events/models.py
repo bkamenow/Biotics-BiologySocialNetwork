@@ -13,3 +13,4 @@ class EventModel(models.Model):
     location = models.CharField(max_length=100, blank=False, null=False)
     user = models.ForeignKey(to=BioticsUserModel, on_delete=models.CASCADE, related_name='events')
     is_approved = models.BooleanField(default=False)
+    participants = models.ManyToManyField(BioticsUserModel, related_name='joined_events', blank=True)

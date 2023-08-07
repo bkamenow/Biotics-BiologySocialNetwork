@@ -52,7 +52,25 @@
                         <img src="{{ pub.photo.url }}" alt="Publication Image">
                     </a>
                 </div>
-
         {% endfor %}
     </div>
+{#     <h2 class="pub-header">Trainings</h2>#}
+{#    <div class="details-profile-photo-section">#}
+{#        {% for training in object.trainings.all %}#}
+{#                <div class="publications-profile-details">#}
+{#                    <div class="course-container" role="button">#}
+{#                        <div class="course">#}
+{#                            <img src="{{ training.photo.url }}" alt="Publication Image">#}
+{#                            <div class="course-details">#}
+{#                                <h2>{{ training.title }}</h2>#}
+{#                                <p>Start: 10/11/23</p>#}
+{#                                <p>End: 10/11/23</p>#}
+{#                                <p>{{ training.description }}</p>#}
+{#                                <p>Price: {{ training.price }}</p>#}
+{#                            </div>#}
+{#                        </div>#}
+{#                    </div>#}
+{#                </div>#}
+{#        {% endfor %}#}
+{#    </div>#}
 {% endblock %}

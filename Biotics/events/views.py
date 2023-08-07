@@ -1,9 +1,9 @@
+from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from django.shortcuts import get_object_or_404, redirect
 
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView
-
 
 from Biotics.events.forms import EventForm
 from Biotics.events.models import EventModel
@@ -84,3 +84,31 @@ def event_deny(request, pk):
     return redirect('approval-event')
 
 
+def join_event(request, event_id):
+    event = get_object_or_404(EventModel, pk=event_id)
+
+    if request.user.is_authenticated:
+        if request.user in event.participants.all():
+            messages.warning(request, "You have already joined this event.")
+        else:
+            event.participants.add(request.user)
+            messages.success(request, "You have joined the event successfully!")
+    else:
+        messages.error(request, "You need to be logged in to join the event.")
+
+    return redirect(request.META['HTTP_REFERER'] + f'#{event_id}')
+
+
+def unjoin_event(request, event_id):
+    event = get_object_or_404(EventModel, pk=event_id)
+
+    if request.user.is_authenticated:
+        if request.user in event.participants.all():
+            event.participants.remove(request.user)
+            messages.success(request, "You have left the event.")
+        else:
+            messages.warning(request, "You have not joined this event.")
+    else:
+        messages.error(request, "You need to be logged in to unjoin the event.")
+
+    return redirect(request.META['HTTP_REFERER'] + f'#{event_id}')

@@ -55,5 +55,3 @@ class BioticsUserModel(AbstractUser, PermissionsMixin):
             return self.first_name or self.last_name
         else:
             return self.username
-
-

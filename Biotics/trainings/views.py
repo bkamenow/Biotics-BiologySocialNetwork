@@ -11,9 +11,6 @@ from Biotics.trainings.forms import TrainingCreateForm, TrainingEditForm
 from Biotics.trainings.models import TrainingModel, Payment
 
 
-# Create your views here.
-
-
 class TrainingListView(LoginRequiredMixin, ListView):
     model = TrainingModel
     template_name = 'trainings/trainings.html'

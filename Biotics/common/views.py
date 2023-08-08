@@ -1,8 +1,6 @@
 from django.shortcuts import render
 from django.views.defaults import page_not_found
 
-# Create your views here.
-
 
 def home_page(request):
     return render(request, template_name='common/home.html')

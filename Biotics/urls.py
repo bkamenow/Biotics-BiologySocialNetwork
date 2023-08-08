@@ -28,6 +28,7 @@ urlpatterns = [
     path('publications/', include('Biotics.publications.urls')),
     path('events/', include('Biotics.events.urls')),
     path('trainings/', include('Biotics.trainings.urls')),
+    path('messaging/', include('Biotics.messaging.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 # handler404 = 'Biotics.common.views.page_not_found_view'

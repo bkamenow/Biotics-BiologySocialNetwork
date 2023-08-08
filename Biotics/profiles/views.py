@@ -5,6 +5,7 @@ from django.views import generic as views
 from django.contrib.auth import views as auth_views
 from django.views.generic import DeleteView
 
+from Biotics.messaging.models import Conversation
 from Biotics.profiles.forms import BioticsUserCreateForm, LoginForm, BioticsUserEditForm, CustomPasswordResetForm
 from Biotics.profiles.models import BioticsUserModel
 from Biotics.trainings.models import TrainingModel, Payment
@@ -33,9 +34,19 @@ class BioticsUserDetailsView(views.DetailView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+        logged_in_user = self.request.user
+        conversations = Conversation.objects.filter(participants=logged_in_user) | Conversation.objects.filter(
+            participants=self.object)
+        other_users = [conversation.participants.exclude(id=logged_in_user.id).first() for conversation in
+                       conversations]
+
+        other_user = self.object
+
         total_publications = self.object.publications.count()
         context.update({
             'total_publications': total_publications,
+            'other_users': other_users,
+            'other_user': other_user,
         })
         return context
 

@@ -1,4 +1,5 @@
 {% extends 'base.html' %}
+{% load custom_filter_msg %}
 {% load static %}
 {% block content %}
      <div class="container">
@@ -36,9 +37,25 @@
                     </div>
                 </div>
                 <div id="action-buttons">
-                    {% if request.user == bioticsusermodel %}
+                    {% if request.user == object %}
                         <a href="{% url 'edit_profile' pk=object.pk %}" id="edit-btn-acc">Edit</a>
                         <a href="{% url 'delete_profile' pk=object.pk %}" id="delete-btn-acc">Delete</a>
+                        <a href="{% url 'conversations_list' %}" id="delete-btn-acc">Messages</a>
+                    {% else %}
+                        {% if request.user != other_user %}
+                            {% with conversation=other_user.conversations.all|get_conversation_with_other_user:request.user %}
+                                {% if request.user == object %}
+                                    <a href="{% url 'conversation_view' user_id=other_user.id %}" class="submit">Message</a>
+                                {% else %}
+                                    {% if conversation %}
+                                        <a href="{% url 'conversation_view' user_id=other_user.id %}" class="submit">Message</a>
+                                    {% else %}
+                                        <a href="{% url 'create_conversation' user_id=other_user.id %}" class="submit">Message</a>
+                                    {% endif %}
+                                {% endif %}
+                            {% endwith %}
+                        {% endif %}
+
                     {% endif %}
                 </div>
             </div>

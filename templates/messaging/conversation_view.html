@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <div class="create-container message-container">
+            <h2>Conversation with {{ other_user.username }}</h2>
+            <ul>
+                {% for message in messages %}
+                    <li style="list-style-type: none">
+                        {% if message.sender == request.user %}
+                            You at {{ message.timestamp.time }}: <strong>{{ message.content }}</strong>
+                        {% else %}
+                            {{ other_user.username }} at {{ message.timestamp.time }}: {{ message.content }}
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+            <form class="message" method="post" action="{% url 'conversation_view' user_id=other_user.id %}">
+                {% csrf_token %}
+                {{ form.as_p }}
+                <button type="submit">Send</button>
+            </form>
+        </div>
+    </div>
+{% endblock %}

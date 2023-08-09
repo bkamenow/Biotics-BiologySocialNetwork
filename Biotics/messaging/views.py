@@ -73,4 +73,3 @@ def conversation_view(request, user_id):
         'form': form,
     }
     return render(request, 'messaging/conversation_view.html', context)
-

@@ -15,6 +15,37 @@
 
             <div id="info-wrapper">
                 <p id="details-title">{{ object.username }}</p>
+                {% if user.is_authenticated %}
+                    {% if request.user != other_user %}
+                        {% if user in other_user.following.all %}
+                            <a href="{% url 'toggle_follow' username=other_user.username  %}" class="btn btn-primary">Following</a>
+                          {% else %}
+                            <a  href="{% url 'toggle_follow' username=other_user.username  %}" class="btn btn-primary"> Follow </a>
+                        {% endif %}
+                    {% endif %}
+                    {% if request.user == object %}
+                        <a href="{% url 'conversations_list' %}" id="delete-btn-acc"><i class="fa-regular fa-message"></i></a>
+                    {% endif %}
+                        {% if request.user != other_user %}
+                            {% with conversation=other_user.conversations.all|get_conversation_with_other_user:request.user %}
+                                {% if request.user == object %}
+                                    <a href="{% url 'conversation_view' user_id=other_user.id %}" id="delete-btn-acc">
+                                        <i class="fa-regular fa-message"></i>
+                                    </a>
+                                {% else %}
+                                    {% if conversation %}
+                                        <a href="{% url 'conversation_view' user_id=other_user.id %}" id="delete-btn-acc">
+                                            <i class="fa-regular fa-message"></i>
+                                        </a>
+                                    {% else %}
+                                        <a href="{% url 'create_conversation' other_user_id=other_user.id %}" id="delete-btn-acc">
+                                            <i class="fa-regular fa-message"></i>
+                                        </a>
+                                    {% endif %}
+                                {% endif %}
+                            {% endwith %}
+                        {% endif %}
+                {% endif %}
                 <div class="bg-details">
                     <div id="details-description">
                         {% if object.get_user_name %}
@@ -32,30 +63,15 @@
                         {% if object.rank %}
                             <p>Rank: {{ object.rank }}</p>
                         {% endif %}
-                        <p id="details-email">Email: {{ object.email}}</p>
-                        <p id="nutrition">Followers: 1234</p>
+                        <p>Email: {{ object.email}}</p>
+                        <p>Followers: {{ object.get_following_count }} </p>
+                        <p>Following: {{ object.total_followers }} </p>
                     </div>
                 </div>
                 <div id="action-buttons">
                     {% if request.user == object %}
                         <a href="{% url 'edit_profile' pk=object.pk %}" id="edit-btn-acc">Edit</a>
                         <a href="{% url 'delete_profile' pk=object.pk %}" id="delete-btn-acc">Delete</a>
-                        <a href="{% url 'conversations_list' %}" id="delete-btn-acc">Messages</a>
-                    {% else %}
-                        {% if request.user != other_user %}
-                            {% with conversation=other_user.conversations.all|get_conversation_with_other_user:request.user %}
-                                {% if request.user == object %}
-                                    <a href="{% url 'conversation_view' user_id=other_user.id %}" class="submit">Message</a>
-                                {% else %}
-                                    {% if conversation %}
-                                        <a href="{% url 'conversation_view' user_id=other_user.id %}" class="submit">Message</a>
-                                    {% else %}
-                                        <a href="{% url 'create_conversation' user_id=other_user.id %}" class="submit">Message</a>
-                                    {% endif %}
-                                {% endif %}
-                            {% endwith %}
-                        {% endif %}
-
                     {% endif %}
                 </div>
             </div>
@@ -71,23 +87,13 @@
                 </div>
         {% endfor %}
     </div>
-{#     <h2 class="pub-header">Trainings</h2>#}
-{#    <div class="details-profile-photo-section">#}
-{#        {% for training in object.trainings.all %}#}
-{#                <div class="publications-profile-details">#}
-{#                    <div class="course-container" role="button">#}
-{#                        <div class="course">#}
-{#                            <img src="{{ training.photo.url }}" alt="Publication Image">#}
-{#                            <div class="course-details">#}
-{#                                <h2>{{ training.title }}</h2>#}
-{#                                <p>Start: 10/11/23</p>#}
-{#                                <p>End: 10/11/23</p>#}
-{#                                <p>{{ training.description }}</p>#}
-{#                                <p>Price: {{ training.price }}</p>#}
-{#                            </div>#}
-{#                        </div>#}
-{#                    </div>#}
-{#                </div>#}
-{#        {% endfor %}#}
-{#    </div>#}
+     <h2 class="pub-header">Trainings</h2>
+    <div class="details-profile-photo-section">
+        {% for training in paid_trainings %}
+                <div class="publications-profile-details">
+                    <img src="{{ training.photo.url }}" alt="Publication Image">
+                    <h3 class="training-title">{{ training.title }}</h3>
+                </div>
+        {% endfor %}
+    </div>
 {% endblock %}

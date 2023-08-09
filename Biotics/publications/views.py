@@ -14,6 +14,7 @@ class PublicationListView(LoginRequiredMixin, ListView):
     model = PublicationModel
     template_name = 'publications/publications.html'
     context_object_name = 'all_publications'
+    login_url = reverse_lazy('login_page')
 
     def get_queryset(self):
         return PublicationModel.objects.order_by('-timestamp')

@@ -5,9 +5,6 @@ from django.db import models
 from Biotics.profiles.validators import check_string_contains_only_letters, age_validator
 
 
-# Create your models here.
-
-
 class BioticsUserModel(AbstractUser, PermissionsMixin):
     GENDER_CHOICES = [
         ('Male', 'Male'),
@@ -47,6 +44,7 @@ class BioticsUserModel(AbstractUser, PermissionsMixin):
     biology_type = models.CharField(choices=BIOLOGY_CHOICES, max_length=13, blank=True)
     rank = models.CharField(choices=RANK_CHOICES, max_length=20, blank=True)
     age = models.PositiveIntegerField(default=18, blank=True, null=True, validators=[age_validator])
+    followers = models.ManyToManyField('self', symmetrical=False, related_name='following')
 
     def get_user_name(self):
         if self.first_name and self.last_name:
@@ -55,3 +53,11 @@ class BioticsUserModel(AbstractUser, PermissionsMixin):
             return self.first_name or self.last_name
         else:
             return self.username
+
+    @property
+    def total_followers(self):
+        return self.followers.count()
+
+    @property
+    def get_following_count(self):
+        return self.following.count()

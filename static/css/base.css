@@ -14,6 +14,7 @@ body {
 header {
     background-color: #ffffff;
     display: flex;
+    justify-content: space-between;
     align-items: center;
     padding: 3px 20px;
 }
@@ -407,4 +408,14 @@ main {
 /*Messages*/
 .message-container {
     color: whitesmoke;
+}
+
+.inline-container {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+}
+
+#event-no{
+    margin-left: 9px;
 }

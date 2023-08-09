@@ -4,14 +4,16 @@
         <section id="edit">
             <div class="form">
                 <h1 class="delete-message">Are you sure you want to delete your event?</h1>
-                <form id='delete' method="post" action="{% url 'delete-event' event.pk %}">
-                    <div class="dlt-btn">
-                        <button type="submit" class="delete-btn">Yes</button>
+                <div class="inline-container">
+                    <form id='delete' method="post" action="{% url 'delete-event' event.pk %}">
+                        <div class="dlt-btn">
+                            <button type="submit" class="delete-btn">Yes</button>
+                        </div>
+                        {% csrf_token %}
+                    </form>
+                     <div class="dlt-btn" id="event-no">
+                        <button type="submit" class="delete-btn"><a class="edit-btn" href="javascript:history.back()">No</a></button>
                     </div>
-                    {% csrf_token %}
-                </form>
-                 <div class="dlt-btn">
-                    <<button type="submit" class="delete-btn"><a class="edit-btn" href="javascript:history.back()">No</a></button>
                 </div>
             </div>
         </section>

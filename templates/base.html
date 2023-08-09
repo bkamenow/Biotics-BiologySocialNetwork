@@ -12,11 +12,6 @@
             <img class="logo" src="{% static '/images/logo.png' %}" alt="Logo">
         </a>
 
-        <div class="search-container">
-            <input class="search-input" type="text" placeholder="Search...">
-            <button class="search-button">Search</button>
-        </div>
-
         <ul class="navigation">
             {% if not request.user.is_authenticated  %}
                 <li><a href="{% url 'login_page' %}">Login</a></li>

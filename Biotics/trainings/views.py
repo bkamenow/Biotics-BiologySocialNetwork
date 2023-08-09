@@ -15,6 +15,7 @@ class TrainingListView(LoginRequiredMixin, ListView):
     model = TrainingModel
     template_name = 'trainings/trainings.html'
     context_object_name = 'all_trainings'
+    login_url = reverse_lazy('login_page')
 
 
 class TrainingCreateView(LoginRequiredMixin, CreateView):

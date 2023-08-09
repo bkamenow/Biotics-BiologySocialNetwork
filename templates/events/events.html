@@ -30,7 +30,7 @@
                                             <button><a href="{% url 'join_event' event.pk %}">Join</a></button>
                                         {% endif %}
                                     {% else %}
-                                        <button><a href="{% url 'login' %}" style="color: black">Login to Join</a></button>
+                                        <a class="" href="{% url 'login_page' %}" style="color: black">Login to Join</a>
                                     {% endif %}
                                 </div>
                             </div>

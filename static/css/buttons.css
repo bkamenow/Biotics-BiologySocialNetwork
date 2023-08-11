@@ -7,8 +7,7 @@
     padding: 10px 10px;
     border-radius: 5px;
     cursor: pointer;
-    width: 50%;
-    margin-left: 100px;
+
 }
 
 .submit:hover,
@@ -52,9 +51,9 @@
 #delete{
     display: inline;
 }
-.dlt-btn {
-    margin-left: 400px;
-}
+/*.dlt-btn {*/
+/*    margin-left: 400px;*/
+/*}*/
 
 .delete-btn .edit-btn{
     color: white;
@@ -112,3 +111,80 @@ i.fa-solid.fa-thumbs-up{
     color: #007bff;
 }
 
+.like-button {
+    border: none;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+#action-buttons{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#action-buttons a {
+    margin-left: 15px;
+}
+
+.follow-btn-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 5px;
+}
+
+.join-training-btn {
+    display: inline-block;
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 5px 10px;
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease-in-out;
+}
+
+.join-training-btn a {
+    color: white;
+    text-decoration: none;
+}
+
+.join-training-btn:hover {
+    background-color: #238755;
+}
+
+
+.event-btn {
+    border: none;
+    background-color: #007BFF;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+
+.joined-btn{
+    background-color: #238755;
+}
+
+.event-btn .event-a {
+    color: white;
+    text-decoration: none;
+}
+
+.event-btn:hover {
+    background-color: forestgreen;
+}
+
+.comment-btn {
+    background-color: dodgerblue;
+    color: white;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    padding: 5px 10px;
+    cursor: pointer;
+}

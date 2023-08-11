@@ -1,5 +1,6 @@
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.core.paginator import Paginator
 from django.shortcuts import redirect, resolve_url, render
 from django.urls import reverse_lazy
 from django.views.generic import ListView, CreateView, UpdateView, DetailView, DeleteView
@@ -21,6 +22,12 @@ class PublicationListView(LoginRequiredMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
+
+        paginator = Paginator(context['all_publications'], 10)
+        page_number = self.request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+
+        context['all_publications'] = page_obj
         context['form'] = CommentForm()
         return context
 
@@ -88,6 +95,30 @@ class PublicationDeleteView(LoginRequiredMixin, DeleteView):
         return context
 
 
+class FilteredPublicationsListView(ListView):
+    model = PublicationModel
+    template_name = 'publications/filtered_publications.html'
+    context_object_name = 'publications'
+    paginate_by = 10
+
+    def get_queryset(self):
+        filter_type = self.kwargs['filter_type']
+        if filter_type == 'Botany':
+            return PublicationModel.objects.filter(type_of_publication='Botany').order_by('-timestamp')
+        elif filter_type == 'Microbiology':
+            return PublicationModel.objects.filter(type_of_publication='Microbiology').order_by('-timestamp')
+        elif filter_type == 'Zoology':
+            return PublicationModel.objects.filter(type_of_publication='Zoology').order_by('-timestamp')
+        else:
+            return PublicationModel.objects.all().order_by('-timestamp')
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['filter_type'] = self.kwargs['filter_type']
+        context['form'] = CommentForm()
+        return context
+
+
 @login_required
 def like_publication(request, pk):
     publication = PublicationModel.objects.get(id=pk)
@@ -118,21 +149,3 @@ def add_comment(request, pk):
             comment.save()
 
         return redirect(request.META['HTTP_REFERER'] + f'#{pk}')
-
-
-def filtered_publications(request, filter_type):
-    comment_form = CommentForm()
-
-    if filter_type == 'Botany':
-        publications = PublicationModel.objects.filter(type_of_publication='Botany').order_by('-timestamp')
-    elif filter_type == 'Microbiology':
-        publications = PublicationModel.objects.filter(type_of_publication='Microbiology').order_by('-timestamp')
-    elif filter_type == 'Zoology':
-        publications = PublicationModel.objects.filter(type_of_publication='Zoology').order_by('-timestamp')
-    else:
-        publications = PublicationModel.objects.all().order_by('-timestamp')
-
-    return render(request, 'publications/filtered_publications.html',
-                  {'publications': publications, 'filter_type': filter_type, 'form': comment_form})
-
-

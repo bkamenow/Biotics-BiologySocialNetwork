@@ -15,36 +15,20 @@
 
             <div id="info-wrapper">
                 <p id="details-title">{{ object.username }}</p>
+                <div class="follow-details">
+                    <p>Followers: {{ object.get_following_count }} </p>
+                    <p>Following: {{ object.total_followers }} </p>
+                </div>
                 {% if user.is_authenticated %}
                     {% if request.user != other_user %}
-                        {% if user in other_user.following.all %}
-                            <a href="{% url 'toggle_follow' username=other_user.username  %}" class="btn btn-primary">Following</a>
-                          {% else %}
-                            <a  href="{% url 'toggle_follow' username=other_user.username  %}" class="btn btn-primary"> Follow </a>
-                        {% endif %}
+                        <div class="follow-btn-container">
+                            {% if user in other_user.following.all %}
+                                <a href="{% url 'toggle_follow' username=other_user.username  %}" class="follow-button" id="delete-btn-acc" style="background-color: darkslateblue">Following</a>
+                            {% else %}
+                                <a  href="{% url 'toggle_follow' username=other_user.username  %}" class="follow-button" id="delete-btn-acc"> Follow </a>
+                            {% endif %}
+                        </div>
                     {% endif %}
-                    {% if request.user == object %}
-                        <a href="{% url 'conversations_list' %}" id="delete-btn-acc"><i class="fa-regular fa-message"></i></a>
-                    {% endif %}
-                        {% if request.user != other_user %}
-                            {% with conversation=other_user.conversations.all|get_conversation_with_other_user:request.user %}
-                                {% if request.user == object %}
-                                    <a href="{% url 'conversation_view' user_id=other_user.id %}" id="delete-btn-acc">
-                                        <i class="fa-regular fa-message"></i>
-                                    </a>
-                                {% else %}
-                                    {% if conversation %}
-                                        <a href="{% url 'conversation_view' user_id=other_user.id %}" id="delete-btn-acc">
-                                            <i class="fa-regular fa-message"></i>
-                                        </a>
-                                    {% else %}
-                                        <a href="{% url 'create_conversation' other_user_id=other_user.id %}" id="delete-btn-acc">
-                                            <i class="fa-regular fa-message"></i>
-                                        </a>
-                                    {% endif %}
-                                {% endif %}
-                            {% endwith %}
-                        {% endif %}
                 {% endif %}
                 <div class="bg-details">
                     <div id="details-description">
@@ -64,12 +48,31 @@
                             <p>Rank: {{ object.rank }}</p>
                         {% endif %}
                         <p>Email: {{ object.email}}</p>
-                        <p>Followers: {{ object.get_following_count }} </p>
-                        <p>Following: {{ object.total_followers }} </p>
                     </div>
                 </div>
                 <div id="action-buttons">
-                    {% if request.user == object %}
+                    {% if request.user != object %}
+                        {% if request.user != other_user %}
+                            {% with conversation=other_user.conversations.all|get_conversation_with_other_user:request.user %}
+                                {% if request.user == object %}
+                                    <a href="{% url 'conversation_view' user_id=other_user.id %}" id="delete-btn-acc">
+                                        <i class="fa-regular fa-message"></i>
+                                    </a>
+                                {% else %}
+                                    {% if conversation %}
+                                        <a href="{% url 'conversation_view' user_id=other_user.id %}" id="delete-btn-acc">
+                                            <i class="fa-regular fa-message"></i>
+                                        </a>
+                                    {% else %}
+                                        <a href="{% url 'create_conversation' other_user_id=other_user.id %}" id="delete-btn-acc">
+                                            <i class="fa-regular fa-message"></i>
+                                        </a>
+                                    {% endif %}
+                                {% endif %}
+                            {% endwith %}
+                        {% endif %}
+                    {% else %}
+                        <a href="{% url 'conversations_list' %}" id="delete-btn-acc"><i class="fa-regular fa-message"></i></a>
                         <a href="{% url 'edit_profile' pk=object.pk %}" id="edit-btn-acc">Edit</a>
                         <a href="{% url 'delete_profile' pk=object.pk %}" id="delete-btn-acc">Delete</a>
                     {% endif %}
@@ -91,7 +94,7 @@
     <div class="details-profile-photo-section">
         {% for training in paid_trainings %}
                 <div class="publications-profile-details">
-                    <img src="{{ training.photo.url }}" alt="Publication Image">
+                    <img src="{{ training.photo.url }}" alt="Training Image">
                     <h3 class="training-title">{{ training.title }}</h3>
                 </div>
         {% endfor %}

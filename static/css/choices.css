@@ -2,14 +2,15 @@
     display: flex;
     justify-content: space-between;
     background-color: rgba(0, 0, 0, 0.1); /* Gray faded background */
-    padding: 50px 200px;
+    padding: 60px 200px;
     margin: 10px 0 24px;
 }
 
 .choice {
     width: 25%;
+    max-width: 25%;
     margin-bottom: 20px;
-    padding: 30px 15px;
+    padding: 30px 30px;
     border: 1px solid #ccc;
     border-radius: 5px;
     position: relative;
@@ -27,11 +28,12 @@
     top: 0;
     left: 0;
     width: 120%;
-    opacity: 0.8; /* Adjust the opacity as needed */
+    opacity: 0.9;
     z-index: -1;
 }
 
 .choice h2 {
+    font-size: 30px;
     margin-top: 0;
     color: white;
 }
@@ -39,6 +41,7 @@
 .choice .description {
     margin-bottom: 10px;
     color: white;
+    font-size: 20px;
 
 }
 

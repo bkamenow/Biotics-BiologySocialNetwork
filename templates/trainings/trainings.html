@@ -11,20 +11,41 @@
                     <h2>{{ training.title }}</h2>
                     <p>Start: 10/11/23</p>
                     <p>End: 10/11/23</p>
-                    <p>{{ training.description }}</p>
+                    <p class="course-description">{{ training.description }}</p>
                     <p>Price: {{ training.price }}</p>
                      {% if request.user.is_superuser %}
-                        <a href="{% url 'edit_training' pk=training.pk %}">Edit</a>
-                        <a href="{% url 'delete_training' pk=training.pk %}">Delete</a>
+                         <button class="join-training-btn">
+                            <a href="{% url 'edit_training' pk=training.pk %}">Edit</a>
+                         </button>
+                         <button class="join-training-btn">
+                            <a href="{% url 'delete_training' pk=training.pk %}">Delete</a>
+                         </button>
                      {% else %}
                          {% if request.user|has_paid_for_training:training %}
                              <p class="joined">Joined</p>
                          {% else %}
-                            <button><a href="{% url 'payment' pk=training.pk %}" target="_blank">Join</a></button>
+                            <button class="join-training-btn"><a href="{% url 'payment' pk=training.pk %}" target="_blank">Join</a></button>
                          {% endif %}
                     {% endif %}
                 </div>
             </div>
         </div>
     {% endfor %}
+    <div class="pagination">
+        <span class="step-links">
+            {% if all_trainings.has_previous %}
+                <a href="?page=1">&laquo; first</a>
+                <a href="?page={{ all_trainings.previous_page_number }}">previous</a>
+            {% endif %}
+
+            <span class="current-page">
+                Page {{ all_trainings.number }} of {{ all_trainings.paginator.num_pages }}.
+            </span>
+
+            {% if all_trainings.has_next %}
+                <a href="?page={{ all_trainings.next_page_number }}">next</a>
+                <a href="?page={{ all_trainings.paginator.num_pages }}">last &raquo;</a>
+            {% endif %}
+        </span>
+    </div>
 {% endblock %}

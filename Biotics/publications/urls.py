@@ -12,6 +12,6 @@ urlpatterns = [
         path('like/', views.like_publication, name='like-publication'),
         path('comment/', views.add_comment, name='add-comment'),
     ])),
-    path('<str:filter_type>/', views.filtered_publications, name='filtered_publications'),
+    path('<str:filter_type>/', views.FilteredPublicationsListView.as_view(), name='filtered_publications'),
 
 ]

@@ -1,25 +1,51 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block content %}
     <div class="container">
         <div class="create-container message-container">
-            <h2>Conversation with {{ other_user.username }}</h2>
-            <ul>
-                {% for message in messages %}
-                    <li style="list-style-type: none">
-                        {% if message.sender == request.user %}
-                            You at {{ message.timestamp.time }}: <strong>{{ message.content }}</strong>
-                        {% else %}
-                            {{ other_user.username }} at {{ message.timestamp.time }}: {{ message.content }}
-                        {% endif %}
-                    </li>
-                {% endfor %}
-            </ul>
-            <form class="message" method="post" action="{% url 'conversation_view' user_id=other_user.id %}">
+            <div class="current-conversation-header">
+                {% if other_user.profile_picture %}
+                     <img class="conversation-photo" src="{{ other_user.profile_picture.url }}"
+                             alt="profile-pic" width="50" height="50">
+                {% else %}
+                    <img class="conversation-photo" src="{% static 'images/user.png' %}"
+                             alt="profile-pic" width="50" height="50">
+                {% endif %}
+                <h2>{{ other_user.username }}</h2>
+            </div>
+            <div class="conversation-container">
+                <div class="conversation-container-msg">
+                    <ul>
+                        {% for message in messages %}
+                            <li style="list-style-type: none">
+                                {% if message.sender == request.user %}
+                                    You at {{ message.timestamp.time }}: <strong>{{ message.content }}</strong>
+                                {% else %}
+                                    {{ other_user.username }} at {{ message.timestamp.time }}: {{ message.content }}
+                                {% endif %}
+                            </li>
+                        {% endfor %}
+                    </ul>
+                </div>
+            </div>
+            <form class="message-form" method="post" action="{% url 'conversation_view' user_id=other_user.id %}">
                 {% csrf_token %}
                 {{ form.as_p }}
                 <button type="submit">Send</button>
             </form>
         </div>
     </div>
+    <script>
+        function scrollToLastMessage() {
+            const messagesContainer = document.querySelector('.conversation-container-msg');
+            const lastMessage = messagesContainer.querySelector('li:last-child');
+            if (lastMessage) {
+                lastMessage.scrollIntoView();
+            }
+        }
+
+        // Call the scroll function when the page loads
+        window.onload = scrollToLastMessage;
+    </script>
 {% endblock %}

@@ -5,20 +5,21 @@
     <div class="container">
         <div class="create-container">
             <h2 class="profile-details-header">My Conversations</h2>
-            <ul style="list-style-type: none">
+            <ul class="conversation-list" style="list-style-type: none">
                 {% for conversation_info in conversation_infos %}
                     <li>
                         <a href="{% url 'conversation_view' user_id=conversation_info.other_user.id %}">
                             {% if conversation_info.other_user.profile_picture %}
-                                <img src="{{ conversation_info.other_user.profile_picture.url }}" alt="profile-pic" width="50" height="50">
+                                <img class="conversation-photo" src="{{ conversation_info.other_user.profile_picture.url }}" alt="profile-pic" width="50" height="50">
                             {% else %}
                                 <img src="{% static 'images/user.png' %}" alt="profile-pic" width="50" height="50">
                             {% endif %}
-                            {{ conversation_info.other_user.username }}
+                            <span class="username">{{ conversation_info.other_user.username }}</span>
                         </a>
                     </li>
                 {% endfor %}
             </ul>
         </div>
     </div>
+
 {% endblock %}

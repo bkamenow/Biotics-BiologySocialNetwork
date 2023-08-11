@@ -1,35 +1,40 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    {% if events %}
-        <div class="publications-container" role="button">
-        {% for event in events %}
-            {% if not event.is_approved %}
-                    <div class="publication-container" role="button">
-                        <div class="publication">
-                            <div class="publication-details">
-                                <h2>{{ event.title }}</h2>
-                                <p>{{ event.description }}</p>
-                                <p>Event Time: {{ event.event_time }}</p>
-                                <p>Date: {{ event.date_of_publication }}</p>
-                                <p>Duration: {{ event.duration }}</p>
-                                <p>Location: {{ event.location }}</p>
-                                <p>Organizer: {{ event.user.username }}</p>
-                                <form method="post" action="{% url 'event_approve' event.pk %}">
-                                    {% csrf_token %}
-                                    <button type="submit">Approve</button>
-                                </form>
-                                <form method="post" action="{% url 'event_deny' event.pk %}">
-                                    {% csrf_token %}
-                                    <button type="submit">Deny</button>
-                                </form>
+        {% if events %}
+            <h1 class="event-h1">Events for Approvement</h1>
+            <div class="events">
+                <div class="events-container">
+                {% for event in events %}
+                    {% if not event.is_approved %}
+                            <div class="event-container">
+                                <div class="event">
+                                    <div class="event-details">
+                                        <h2>{{ event.title }}</h2>
+                                        <p>{{ event.description }}</p>
+                                        <p>Event Time: {{ event.event_time }}</p>
+                                        <p>Date: {{ event.date_of_publication }}</p>
+                                        <p>Duration: {{ event.duration }}</p>
+                                        <p>Location: {{ event.location }}</p>
+                                        <p>Organizer: {{ event.user.username }}</p>
+                                        <div class="inline-container approve-container">
+                                            <form method="post" action="{% url 'event_approve' event.pk %}">
+                                                {% csrf_token %}
+                                                <button class="event-btn" type="submit">Approve</button>
+                                            </form>
+                                            <form method="post" action="{% url 'event_deny' event.pk %}">
+                                                {% csrf_token %}
+                                                <button class="event-btn" type="submit">Deny</button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
                             </div>
-                        </div>
-                    </div>
+                    {% endif %}
+                {% endfor %}
+                </div>
+             </div>
+            {% else %}
+                <h2 class="no-events">No events for approval!</h2>
             {% endif %}
-        {% endfor %}
-        </div>
-    {% else %}
-        <h2 class="no-events">No events for approval!</h2>
-    {% endif %}
 {% endblock %}

@@ -7,6 +7,7 @@ from django.views import generic as views
 from django.contrib.auth import views as auth_views
 from django.views.generic import DeleteView
 
+from Biotics.events.models import EventModel
 from Biotics.messaging.models import Conversation
 from Biotics.profiles.forms import BioticsUserCreateForm, LoginForm, BioticsUserEditForm, CustomPasswordResetForm
 from Biotics.profiles.models import BioticsUserModel

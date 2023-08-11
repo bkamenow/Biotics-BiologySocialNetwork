@@ -1,5 +1,6 @@
 from django.contrib import messages
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
+from django.core.paginator import Paginator
 from django.shortcuts import get_object_or_404, redirect
 
 from django.urls import reverse_lazy
@@ -16,7 +17,20 @@ class EventListView(ListView):
     model = EventModel
     template_name = 'events/events.html'
     context_object_name = 'events'
-    paginate_by = 10
+
+    def is_superuser_check(self, user):
+        return user.is_superuser
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+
+        paginator = Paginator(context['events'], 10)
+        page_number = self.request.GET.get('page')
+        page_obj = paginator.get_page(page_number)
+
+        context['events'] = page_obj
+        context['user_is_superuser'] = self.is_superuser_check(self.request.user)
+        return context
 
 
 class EventForApproveListView(ListView):

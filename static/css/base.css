@@ -162,10 +162,9 @@ main {
 /*Publications*/
 .publications-container{
     display: flex;
+    flex-wrap: wrap;
     flex-direction: column;
-    justify-content: space-between;
-    margin-left: 510px;
-    margin-top: 10px;
+    margin: 10px auto 0;
     max-width: 55%;
 }
 .publication-container{
@@ -224,6 +223,7 @@ main {
     padding-bottom: 10px;
     background-color: #05316c;
     color: whitesmoke;
+    margin-left: 180px;
 }
 
 .publication form{
@@ -310,7 +310,7 @@ main {
     border-radius: 5px;
     padding: 10px;
     max-width: 30%;
-    width: 30%;
+    width: 25%;
 }
 
 .course img {
@@ -325,6 +325,10 @@ main {
 .course-details {
     overflow: hidden;
     color: whitesmoke;
+}
+.course-description {
+  overflow-wrap: break-word;
+  word-break: break-word;
 }
 
 .course-details a {
@@ -356,10 +360,10 @@ main {
     display: flex;
     flex-wrap: wrap;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: center;
     gap: 20px;
-    margin-left: 500px;
-    margin-right: 500px;
+    /*margin-left: 500px;*/
+    /*margin-right: 500px;*/
 }
 
 .details-profile-photo-section .publication {
@@ -387,7 +391,7 @@ main {
 
 /*Comments*/
 #id_content {
-    height: 30px;
+    height: 35px;
     outline: none;
 }
 
@@ -396,6 +400,20 @@ main {
     padding: 0;
     margin-top: 5px;
 }
+
+#comment-form{
+    display: flex;
+    flex-flow: row wrap;
+    align-items: center;
+}
+
+#comment-form textarea{
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    resize: none;
+}
+
+
 
 .joined {
     color: limegreen;
@@ -413,9 +431,235 @@ main {
 .inline-container {
     display: flex;
     flex-direction: row;
-    justify-content: flex-start;
+    justify-content: center;
 }
 
 #event-no{
     margin-left: 9px;
 }
+
+.training-title {
+    color: whitesmoke;
+    margin-left: 12px;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.pagination a {
+    padding: 5px 10px;
+    text-decoration: none;
+    margin: 0 5px;
+    color: whitesmoke;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.pagination a:hover {
+
+    color: dodgerblue;
+}
+
+.follow-details {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: whitesmoke;
+    margin-bottom: 5px;
+}
+.follow-details p{
+    margin-left: 10px;
+}
+
+.conversation-list {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 0;
+    width: 60%;
+    margin-left: 90px;
+    max-width: 60%;
+
+}
+
+.conversation-list li a {
+    color: whitesmoke;
+   align-items: center;
+    text-align: center;
+}
+.conversation-list li a span {
+    margin: 0 0 0 5px;
+}
+
+.conversation-photo {
+    border-radius: 50%;
+}
+
+.current-conversation-header {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    align-items: center;
+}
+
+.conversation-container {
+    position: relative;
+    background-color: rgba(245, 245, 245, 0.1);
+    padding: 20px;
+    border-radius: 10px;
+    max-width: 400px;
+    margin: 20px auto;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    height: 400px;
+    overflow-y: scroll;
+    scrollbar-width: thin;
+    scrollbar-color: transparent transparent;
+}
+
+.conversation-container-msg {
+    list-style-type: none;
+}
+
+.conversation-container-msg li {
+    padding: 5px;
+    border-radius: 5px;
+}
+
+/*FOR FIREFOX*/
+.conversation-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.conversation-container::-webkit-scrollbar-thumb {
+  background-color: transparent;
+  border-radius: 5px;
+}
+
+.conversation-container::-webkit-scrollbar-button {
+  display: none;
+}
+
+/*FOR BRAVE/CHROME*/
+.conversation-container::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    ::-webkit-scrollbar-track {
+        background: transparent;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        background-color: transparent;
+        border-radius: 5px;
+    }
+
+.message-form {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: rgba(0, 0, 0, 0.1); /* Semi-transparent background */
+    padding: 10px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+}
+
+.message-form input[type="text"] {
+    flex-grow: 1;
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+     margin-right: 10px;
+}
+
+.message-form textarea {
+    display: flex;
+    align-items: center;
+     background-color: whitesmoke;
+    border-bottom-left-radius: 5px;
+    border-top-left-radius: 5px;
+    resize: none;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    color: black;
+}
+.message-form textarea::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
+.message-form button {
+    background-color: #339966;
+    color: white;
+    border: none;
+    border-radius: 0 5px 5px 0;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+/*EVENTS*/
+
+.events {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.events-container {
+    background-color: #05316c;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    margin: 10px;
+    padding: 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.event-container {
+    justify-content: left;
+}
+
+.event-details {
+    margin-top: 10px;
+    padding: 10px;
+    color: whitesmoke;
+}
+.event-description {
+    overflow-wrap: break-word;
+    word-break: break-word;
+}
+
+.event-a {
+    color: #007BFF;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.event-h1, .no-events {
+    display: flex;
+    justify-content: center;
+    color: whitesmoke;
+    font-size: 45px;
+    margin-top: 20px;
+}
+
+.pagination{
+    color: whitesmoke;
+}
+
+.approve-container {
+    justify-content: center;
+    gap: 10px;
+}
+
+
+
+
+

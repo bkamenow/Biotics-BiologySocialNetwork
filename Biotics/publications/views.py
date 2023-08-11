@@ -8,8 +8,6 @@ from django.views.generic import ListView, CreateView, UpdateView, DetailView, D
 from Biotics.publications.forms import PublicationCreateForm, PublicationEditForm, CommentForm
 from Biotics.publications.models import PublicationModel, Like
 
-from pyperclip import copy
-
 
 class PublicationListView(LoginRequiredMixin, ListView):
     model = PublicationModel

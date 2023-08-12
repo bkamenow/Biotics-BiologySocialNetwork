@@ -24,7 +24,7 @@ class EventListView(ListView):
     def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
 
-        paginator = Paginator(context['events'], 10)
+        paginator = Paginator(context['events'], 5)
         page_number = self.request.GET.get('page')
         page_obj = paginator.get_page(page_number)
 
